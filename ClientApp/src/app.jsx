@@ -1,42 +1,51 @@
 import React, { Component } from 'react';
-import Clock from './clock';
 import './app.css';
-import { Form, FormControl, Button} from 'react-bootstrap';
+import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			deadline: 'December 25, 2018',
-			newDeadline: ''
-		}
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ''
+    }
+  }
 
-	changeDeadline() {
-		this.setState({deadline: this.state.newDeadline});
-	}
+  search() {
+    console.log('this.state', this.state);
+  }
 
-	render() {
-		return (
-			<div className="App">
-				<div className="App-title">
-					Countdown to {this.state.deadline}
-				</div>
-				<Clock 
-					deadline={this.state.deadline} />
-				<Form inline>
-					<FormControl
-						className="Deadline-input"
-						placeholder='new date'
-						onChange={event => this.setState({newDeadline: event.target.value})}
-					/>
-					<Button onClick={() => this.changeDeadline()}>
-						Submit
-					</Button>
-				</Form>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div className="App">
+        <div className="App-title">Music Master</div>
+        <FormGroup>
+          <InputGroup>
+            <FormControl 
+              type="text"
+              placeholder="Search for an artist"
+              value={this.state.query}
+              onChange={event => {this.setState({query: event.target.value})}}
+              onKeyPress={event => {
+                if (event.key === 'Enter') {
+                  this.search();
+                }
+              }}
+            />
+            <InputGroup.Addon onClick={() => this.search()}>
+              <Glyphicon glyph="search"></Glyphicon>
+            </InputGroup.Addon>
+          </InputGroup>
+        </FormGroup>
+        <div className="Profile">
+          <div>Artist Picture</div>
+          <div>Artist Name</div>
+        </div>
+        <div className="Gallery">
+          Gallery
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;

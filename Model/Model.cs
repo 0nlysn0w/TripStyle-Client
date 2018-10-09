@@ -34,6 +34,7 @@ namespace TripStyle.Model
     public class User
     {
         [Key] public int UserId { get; set; }
+        public Role Role{ get; set; }
         public int RoleId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }

@@ -10,7 +10,7 @@ using TripStyle.Model;
 namespace TripStyle.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20181009120236_InitialCreateProjectCDB")]
+    [Migration("20181010130600_InitialCreateProjectCDB")]
     partial class InitialCreateProjectCDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,8 @@ namespace TripStyle.Migrations
                     b.Property<int>("UserId");
 
                     b.HasKey("AdressId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Address");
                 });
@@ -68,6 +70,10 @@ namespace TripStyle.Migrations
 
                     b.HasKey("OrderId");
 
+                    b.HasIndex("AdressId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("Order");
                 });
 
@@ -81,6 +87,8 @@ namespace TripStyle.Migrations
                     b.Property<int>("Quantity");
 
                     b.HasKey("OrderId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderedProduct");
                 });
@@ -110,6 +118,8 @@ namespace TripStyle.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Product");
                 });
 
@@ -127,6 +137,10 @@ namespace TripStyle.Migrations
                     b.Property<int>("UserId");
 
                     b.HasKey("ReviewId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Review");
                 });
@@ -171,6 +185,56 @@ namespace TripStyle.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("TripStyle.Model.Address", b =>
+                {
+                    b.HasOne("TripStyle.Model.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TripStyle.Model.Order", b =>
+                {
+                    b.HasOne("TripStyle.Model.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AdressId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TripStyle.Model.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TripStyle.Model.OrderedProduct", b =>
+                {
+                    b.HasOne("TripStyle.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TripStyle.Model.Product", b =>
+                {
+                    b.HasOne("TripStyle.Model.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TripStyle.Model.Review", b =>
+                {
+                    b.HasOne("TripStyle.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TripStyle.Model.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TripStyle.Model.User", b =>

@@ -55,6 +55,7 @@ namespace TripStyle.Model
     public class Product
     {
         [Key] public int ProductId { get; set; }
+        public Category Category { get; set; }
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
@@ -68,7 +69,9 @@ namespace TripStyle.Model
     public class Order
     {
         [Key] public int OrderId { get; set; }
+        public User User { get; set; }
         public int UserId { get; set; }
+        public Address Address { get; set; }
         public int AdressId { get; set; }
         public DateTime OrderDate { get; set; }
 
@@ -76,7 +79,9 @@ namespace TripStyle.Model
     public class Review
     {
         [Key] public int ReviewId { get; set; }
+        public User User{ get; set; }
         public int UserId { get; set; }
+        public Product Product{get; set; }
         public int ProductId { get; set; }
         public string Text { get; set; }
         public string Rating { get; set; }
@@ -85,6 +90,7 @@ namespace TripStyle.Model
     public class Address
     {
         [Key] public int AdressId { get; set; }
+        public User User { get; set; }
         public int UserId { get; set; }
         public string Type { get; set; }
         public string Street { get; set; }
@@ -94,6 +100,7 @@ namespace TripStyle.Model
     public class OrderedProduct
     {
         [Key] public int OrderId { get; set; }
+        public Product Product { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
     }

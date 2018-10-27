@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
-import { MenuHeader } from 'semantic-ui-react';
 import { MenuItem } from 'semantic-ui-react';
-import { Icon } from 'semantic-ui-react';
 import SearchExampleStandard from './SearchBar';
 import { Button } from 'semantic-ui-react';
 
@@ -12,7 +10,7 @@ export default class TopHeader extends Component {
 
   render() {
     return (
-        <Menu borderless size='massive'>
+        <Menu borderless size='massive' >
             <MenuItem>
                 <Button basic compact secondary>
                     <h1>TripStyle</h1>

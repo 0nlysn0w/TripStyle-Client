@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
-import { Grid } from 'semantic-ui-react';
-import { GridRow } from 'semantic-ui-react';
-import { Header } from 'semantic-ui-react';
 import { Container } from 'semantic-ui-react';
 import TopNavigation from './TopNavigation';
 import TopHeader from './Header';
+import { Image } from 'semantic-ui-react';
+import worldmap from './Images/worldmap.PNG';
+import GridExampleRelaxed from './Grid';
+import { Divider } from 'semantic-ui-react';
 
 export class Home extends Component {
   displayName = Home.name
@@ -13,9 +13,22 @@ export class Home extends Component {
   render() {
     return ( 
       <div>
-        <TopHeader></TopHeader>
+        <TopHeader />
         <Container>
           <TopNavigation />
+          
+        </Container>
+        <Divider hidden />
+        <Image src={ worldmap } centered/>
+        <Divider hidden />
+        <Divider horizontal>Recommended</Divider>
+        <Container>
+        <GridExampleRelaxed />
+        </Container>
+        <Divider hidden />
+        <Divider horizontal>Recently viewed</Divider>
+        <Container>
+        <GridExampleRelaxed />
         </Container>
       </div>
     );

@@ -15,24 +15,7 @@ namespace TripStyle
     {
         public static void Main(string[] args)
         {
-
-
-            // using (var db = new TripStyleContext())
-            // {
-
-            //     var product = new Product
-            //     {
-            //         Name = "Backpack",
-            //         Make = "Douchebags"
-            //     };
-
-            //     db.Products.Add(product);
-            //     db.SaveChanges();
-
-            // }
             CreateWebHostBuilder(args).Build().Run();
-
-
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TopHeader from './Header';
-import { Container, Image, Grid, GridRow, GridColumn, Divider, Header } from 'semantic-ui-react';
+import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button, Icon } from 'semantic-ui-react';
 import ProductImageSlider from './ProductImageSlider';
+import SelectSize from './SelectSize';
 
 
 export class ProductPage extends Component {
@@ -24,7 +25,23 @@ export class ProductPage extends Component {
                         <Container textAlign='center'>
                             <Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='big' />
                         </Container>
-                    </GridColumn> 
+                    </GridColumn>
+                    <GridColumn width='5' verticalAlign='center'>
+                        <Divider hidden />
+                        <Header size='huge' textAlign='right' color='red'> €20,- </Header>
+                        <Divider hidden/>
+                        <Container textAlign='center'>
+                            <Header size='huge'>Product name</Header>
+                            <Divider hidden/>
+                            Select size:
+                            <Container fluid>
+                                <SelectSize />
+                            </Container>
+                            <Divider hidden />
+                            <Button color='green' size='massive' icon='shopping cart' fluid> 
+                            </Button>
+                        </Container>
+                    </GridColumn>
                 </GridRow>
             </Grid>
         </Container>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Home } from './components/Home';
-import { ProductPage } from './components/ProductPage';
+import { FilterPage } from './components/FilterPage';
 
 export default class App extends Component {
   displayName = App.name
@@ -8,7 +8,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <ProductPage />
+        <FilterPage />
       </div>
     );
   }

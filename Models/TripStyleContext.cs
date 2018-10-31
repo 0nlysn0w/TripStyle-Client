@@ -16,6 +16,8 @@ namespace TripStyle.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Product category relation
+            // pkpkpk;kkk;k
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)

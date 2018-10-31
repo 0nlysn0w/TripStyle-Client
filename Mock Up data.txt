@@ -1,0 +1,42 @@
+Insert Into "User" Values
+(0001,0,'Tim','Hoeneveld','Male','timhoeneveld@hotmail.com','0643979130',000,'2000-08-08 00:00:00'),
+(0002,1,'Kees','Van der Graaf','Male','789@hotmail.com','0643979130',000,'2000-08-08 00:00:00'),
+(0003,1,'Johan','Meeuw','Male','456@hotmail.com','0643979130',000,'2000-08-08 00:00:00'),
+(0004,1,'Eva','van Geat','Female','123@hotmail.com','0643979130',000,'2000-08-08 00:00:00')
+
+Insert Into "Role" Values
+(0,'Admin','Adminastrator of the website'),
+(1,'Registerd User','A User that has actived his/her account'),
+(2,'Unregisterd User','A User that has not actived his/her account but has bought something'),
+(3,'Guest','A User that is visitng the website without buying something')
+
+Insert Into "Address" Values
+(0001,0001,'Type','Bloemenstraat','Rotterdam','The Netherlands'),
+(0002,0002,'Type','Koningenlaan','Rotterdam','The Netherlands'),
+(0003,0003,'Type','Bloemenlaan','Amsterdam','The Netherlands'),
+(0004,0004,'Type','Bloemendijk','Berlijn','Germany')
+
+Insert Into "Category" Values
+(1,1,'Clothing'),
+(2,1,'Jeans')
+
+
+Insert Into "Product" Values
+(0111,1,'Jasje',40,'foto',2,'blue','Europe','Cotton','Spring'),
+(0444,1,'Leuke Jas',60,'foto',1,'blue','Europe','Cotton','Summer'),
+(0344,1,'Winter Jas',70,'foto',3,'blue','Europe','Cotton','Winter'),
+(0244,1,'Summer Jas',20,'foto',5,'blue','Europe','Cotton','Summer')
+
+Insert Into "Order" Values
+(01,0001,0001,'2018-08-08 00:00:00'),
+(02,0002,0002,'2018-08-08 00:00:00'),
+(03,0002,0002,'2018-08-08 00:00:00')
+
+Insert Into "OrderedProduct" Values
+(01,0111,1),
+(02,0444,2),
+(03,0344,1)
+
+Insert Into "Review" Values
+(01,0001,0111,'The good stuff',8),
+(02,0002,0444,'The nice stuff',8)

@@ -6,6 +6,7 @@ import { Image } from 'semantic-ui-react';
 import worldmap from './Images/worldmap.PNG';
 import GridExampleRelaxed from './Grid';
 import { Divider } from 'semantic-ui-react';
+import Footer from './Footer'; 
 
 export class Home extends Component {
   displayName = Home.name
@@ -30,6 +31,8 @@ export class Home extends Component {
         <Container>
         <GridExampleRelaxed />
         </Container>
+        <Divider hidden/>
+        <Footer />
       </div>
     );
   }

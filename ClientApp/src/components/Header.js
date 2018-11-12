@@ -3,18 +3,21 @@ import { Menu } from 'semantic-ui-react';
 import { MenuItem } from 'semantic-ui-react';
 import SearchExampleStandard from './SearchBar';
 import { Button } from 'semantic-ui-react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Push, NavLink } from 'react-router-dom';
+import { Home } from './Home';
+import  ShoppingCart from './ShoppingCart';
 
 export default class TopHeader extends Component {
   displayName = TopHeader.name
+  onNavigateHome() {
+
+  }
 
   render() {
     return (
-        <Router>
             <Menu borderless size='massive' color='grey' inverted>
                     <MenuItem>
-                        <Button basic compact secondary onClick={<Link to='Home'/>}>
+                        <Button basic compact secondary as={NavLink} to='/'>
                             <h1>TripStyle</h1>
                         </Button>
                     </MenuItem>
@@ -26,11 +29,10 @@ export default class TopHeader extends Component {
                     </Button>
                 </MenuItem>
                 <MenuItem>
-                    <Button icon='shopping cart' color='green' circular>
+                    <Button icon='shopping cart' color='green' circular onClick={ShoppingCart.handleShowClick}>
                     </Button>
                 </MenuItem>
             </Menu>
-        </Router>
     );
   }
 }

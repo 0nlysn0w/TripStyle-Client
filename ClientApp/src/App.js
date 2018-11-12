@@ -4,6 +4,7 @@ import { ProductPage } from './components/ProductPage';
 import { render } from 'react-dom';
 import {Route, BrowserRouter, Switch } from 'react-router-dom';
 import { FilterPage } from './components/FilterPage';
+import ShoppingCart from './components/ShoppingCart';
 
 export default class App extends Component {
   displayName = App.name
@@ -16,7 +17,7 @@ export default class App extends Component {
           <Route path={'/product'} component={ProductPage} />
           <Route path={'/filter'} component={FilterPage} />
         </Switch>
-       </BrowserRouter>
+       </BrowserRouter> 
     );
   }
 }

@@ -1,0 +1,28 @@
+import React from 'react'
+import { Grid, Image } from 'semantic-ui-react'
+import GenCheckbox from './GenCheckbox';
+import TypeCheckbox from './TypeCheckbox';
+import ColorButton from './ColorButton';
+import RegionCheckbox from './RegionCheckbox';
+import Grid2 from './Grid2';
+import { Divider } from 'semantic-ui-react';
+
+
+const GridExampleColumnWidth = () => (
+  <Grid>
+    <Grid.Column width={3}>
+        <GenCheckbox />
+            <Divider hidden />
+        <TypeCheckbox />
+            <Divider hidden />
+        <ColorButton />
+            <Divider hidden />
+        <RegionCheckbox />
+    </Grid.Column>
+    <Grid.Column width={13}>
+      <Grid2 />
+    </Grid.Column>
+  </Grid>
+)
+
+export default GridExampleColumnWidth

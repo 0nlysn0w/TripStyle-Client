@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { FetchProducts } from './components/FetchProducts';
-import { Counter } from './components/Counter';
+import { ProductPage } from './components/ProductPage';
+import { render } from 'react-dom';
+import {Route, BrowserRouter, Switch } from 'react-router-dom';
+import { FilterPage } from './components/FilterPage';
 
 export default class App extends Component {
   displayName = App.name
 
   render() {
     return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetchdata' component={FetchProducts} />
-      </Layout>
+      <BrowserRouter>
+        <Switch>
+          <Route path={'/'} component={Home} exact />
+          <Route path={'/product'} component={ProductPage} />
+          <Route path={'/filter'} component={FilterPage} />
+        </Switch>
+       </BrowserRouter>
     );
   }
 }

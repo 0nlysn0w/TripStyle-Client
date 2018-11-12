@@ -69,8 +69,11 @@ namespace TripStyle.Models
                 .WithOne(a => a.User)
                 .HasForeignKey(u => u.AddressId);
 
+            // User can have many purchases
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Purchases)
+                .WithOne(p => p.User);
 
-            // TODO: User and order relation
             // Product and Purchase many to many
             modelBuilder.Entity<PurchaseLine>()
                 .HasKey(pl => new

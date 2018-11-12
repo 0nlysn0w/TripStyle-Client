@@ -250,7 +250,7 @@ namespace TripStyle.Migrations
                         .HasForeignKey("DeliveryAddressAddressId");
 
                     b.HasOne("TripStyle.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Purchases")
                         .HasForeignKey("UserId");
                 });
 

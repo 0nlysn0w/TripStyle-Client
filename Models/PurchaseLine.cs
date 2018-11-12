@@ -4,7 +4,7 @@ using System;
 
 namespace TripStyle.Models
 {
-    public class PurchasedProduct
+    public class PurchaseLine
     {
         public int PurchaseId { get; set; }
         public Purchase Purchase { get; set; }
@@ -14,6 +14,7 @@ namespace TripStyle.Models
         public string Name { get; set; }
         public string Make { get; set; }
         public string Price { get; set; }
+        public string Quantity { get; set; }
 
     }
 }

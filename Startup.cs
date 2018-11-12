@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TripStyle.Models;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace TripStyle
 {
@@ -25,6 +26,14 @@ namespace TripStyle
             services.AddDbContext<TripStyleContext>(
                 opt => opt.UseSqlite("Data Source=tripstyle.db")
             );
+
+            //             services.AddDbContextPool<YourDbContext>( // replace "YourDbContext" with the class name of your DbContext
+            //     options => options.UseMySql("Server=localhost;Database=ef;User=root;Password=123456;", // replace with your Connection String
+            //         mysqlOptions =>
+            //         {
+            //             mySqlOptions.ServerVersion(new Version(5, 7, 17), ServerType.MySql); // replace with your Server Version and Type
+            //         }
+            // ));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

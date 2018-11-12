@@ -13,31 +13,83 @@ namespace TripStyle.Models
         public DbSet<Role> Roles { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketProduct> BasketProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //User has one basket
+            // modelBuilder.Entity<User>()
+            //     .HasOne(u => u.Basket)
+            //     .WithOne(b => b.User)
+            //     .HasForeignKey(u => u.BasketId);
+
+            modelBuilder.Entity<Basket>()
+                .HasOne(b => b.User)
+                .WithOne(u => u.Basket);
+                //.HasForeignKey<User>(u => u.BasketId);
+
+            //Basket and products 
+            modelBuilder.Entity<BasketProduct>()
+                .HasKey(bp => new
+                {
+                    bp.BasketId,
+                    bp.ProductId
+                });
+
+            modelBuilder.Entity<BasketProduct>()
+                .HasOne(bp => bp.Basket)
+                .WithMany(b => b.BasketProducts)
+                .HasForeignKey(bp => bp.BasketId);
+
+            modelBuilder.Entity<BasketProduct>()
+                .HasOne(bp => bp.Product)
+                .WithMany(p => p.BasketProducts)
+                .HasForeignKey(bp => bp.ProductId);
+
+            // Product has many images
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Images)
+                .WithOne(i => i.Product);
+
+            // Purchase has one address
+            modelBuilder.Entity<Purchase>()
+                .HasOne(p => p.DeliveryAddress)
+                .WithMany(a => a.Purchases);
+
+            // Product has one category
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
-                .WithMany(c => c.Products)
-                .IsRequired();
+                .WithMany(c => c.Products);
 
+            // User has many addresses
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Addresses)
-                .WithOne(a => a.User);
+                .WithOne(a => a.User)
+                .HasForeignKey(u => u.AddressId);
 
+
+            // TODO: User and order relation
             // Product and Purchase many to many
-            modelBuilder.Entity<PurchasedProduct>()
-                .HasKey(pupo => new { pupo.PurchaseId, pupo.ProductId });
+            modelBuilder.Entity<PurchaseLine>()
+                .HasKey(pl => new
+                {
+                    pl.PurchaseId,
+                    pl.ProductId
+                });
 
-            modelBuilder.Entity<PurchasedProduct>()
-                .HasOne(pupo => pupo.Purchase)
-                .WithMany(pu => pu.PurchasedProducts)
-                .HasForeignKey(pupo => pupo.PurchaseId);
+            modelBuilder.Entity<PurchaseLine>()
+                .HasOne(pl => pl.Purchase)
+                .WithMany(pu => pu.PurchaseLines)
+                .HasForeignKey(pl => pl.PurchaseId);
 
-            modelBuilder.Entity<PurchasedProduct>()
-                .HasOne(pupo => pupo.Product)
-                .WithMany(pr => pr.PurchasedProducts)
-                .HasForeignKey(pupo => pupo.ProductId);
+            modelBuilder.Entity<PurchaseLine>()
+                .HasOne(pl => pl.Product)
+                .WithMany(li => li.PurchaseLines)
+                .HasForeignKey(pl => pl.ProductId);
+
+
 
 
         }

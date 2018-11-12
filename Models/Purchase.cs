@@ -11,6 +11,6 @@ namespace TripStyle.Models
 
         public User User { get; set; }
         public Address DeliveryAddress { get; set; }
-        public ICollection<PurchasedProduct> PurchasedProducts { get; set; }
+        public ICollection<PurchaseLine> PurchaseLines { get; set; }
     }
 }

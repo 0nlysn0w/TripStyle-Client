@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Home } from './components/Home';
+import Home from './components/Home';
 import { ProductPage } from './components/ProductPage';
-import { render } from 'react-dom';
 import {Route, BrowserRouter, Switch } from 'react-router-dom';
 import { FilterPage } from './components/FilterPage';
 import ShoppingCart from './components/ShoppingCart';

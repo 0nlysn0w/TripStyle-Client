@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TripStyle.Models;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+//using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace TripStyle
 {
@@ -23,8 +23,8 @@ namespace TripStyle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TripStyleContext>(
-                opt => opt.UseSqlite("Data Source=tripstyle.db")
+                services.AddDbContext<TripStyleContext>(
+                opt => opt.UseSqlite("Data Source = tripstyle.db")
             );
 
             //             services.AddDbContextPool<YourDbContext>( // replace "YourDbContext" with the class name of your DbContext

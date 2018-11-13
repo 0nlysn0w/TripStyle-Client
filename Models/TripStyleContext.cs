@@ -1,10 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace TripStyle.Models
 {
     public class TripStyleContext : DbContext
     {
+        public TripStyleContext () {}
         public TripStyleContext(DbContextOptions<TripStyleContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
@@ -17,6 +21,11 @@ namespace TripStyle.Models
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+            optionsBuilder.UseSqlite("Data Source = tripstyle.db");
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //User has one basket

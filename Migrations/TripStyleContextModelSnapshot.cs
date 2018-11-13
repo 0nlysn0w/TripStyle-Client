@@ -28,6 +28,8 @@ namespace TripStyle.Migrations
 
                     b.Property<string>("Type");
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("AddressId");
 
                     b.ToTable("Addresses");
@@ -79,7 +81,7 @@ namespace TripStyle.Migrations
 
                     b.Property<string>("Order");
 
-                    b.Property<int?>("ProductId");
+                    b.Property<int>("ProductId");
 
                     b.Property<string>("Url");
 
@@ -95,7 +97,7 @@ namespace TripStyle.Migrations
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<string>("Color");
 
@@ -196,7 +198,7 @@ namespace TripStyle.Migrations
 
                     b.Property<string>("Phonenumber");
 
-                    b.Property<int?>("RoleId");
+                    b.Property<int>("RoleId");
 
                     b.HasKey("UserId");
 
@@ -233,14 +235,16 @@ namespace TripStyle.Migrations
                 {
                     b.HasOne("TripStyle.Models.Product", "Product")
                         .WithMany("Images")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TripStyle.Models.Product", b =>
                 {
                     b.HasOne("TripStyle.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TripStyle.Models.Purchase", b =>
@@ -276,7 +280,8 @@ namespace TripStyle.Migrations
 
                     b.HasOne("TripStyle.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

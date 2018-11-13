@@ -182,22 +182,25 @@ namespace TripStyle
                     b = b + 1;
                 } 
             }
+            void Database_Generator()
+            {
+                //Run First
+                CreateRole();
+                //Run Second
+                CreateBasket();  
+                //Run Thrid   
+                CreateCategories();
+                //Run Fourth
+                CreateUser();
+                //Run Fifth
+                CreateProducts();
+                //Run Sixth
+                CreateImages();
+                //Run Seventh();
+                CreateAddresses();
             
-            //Run First
-            //CreateRole();
-            //Run Second
-            //CreateBasket();  
-            //Run Thrid   
-            //CreateCategories();
-            //Run Fourth
-            //CreateUser();
-            //Run Fifth
-            //CreateProducts();
-            //Run Sixth
-            //CreateImages();
-            //Run Seventh();
-            CreateAddresses();
-            
+            }
+            Database_Generator();
         }
 
             

@@ -12,7 +12,7 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path={'/'} component={Home} exact />
+          <Route path={'/'} component={ProductPage} exact />
           <Route path={'/product'} component={ProductPage} />
           <Route path={'/filter'} component={FilterPage} />
         </Switch>

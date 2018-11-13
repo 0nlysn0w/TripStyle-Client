@@ -1,15 +1,22 @@
-import React from 'react'
+
 import { Button, Container } from 'semantic-ui-react'
+import React from 'react'
 
-const SelectSize = () => 
-    <Container>
-        <Button basic>XS</Button>
-        <Button basic>S</Button>
-        <Button disabled basic>M</Button>
-        <Button basic>L</Button>
-        <Button basic>XL</Button>
-        <Button basic>XXL</Button>
-        <Button disabled basic>3XL</Button>
-    </Container>
 
-export default SelectSize
+
+const SelectSize = () =>( 
+    
+    <Button.Group>
+      <Button>Xs</Button>
+      <Button>S</Button>
+      <Button>M</Button>
+      <Button>L</Button>
+      <Button>XL</Button>
+
+    </Button.Group>
+     )
+     
+   
+    
+  
+  export default SelectSize

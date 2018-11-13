@@ -5,11 +5,10 @@ import ProductImageSlider from './ProductImageSlider';
 import SelectSize from './SelectSize';
 
 
+
 export class ProductPage extends Component {
   displayName = ProductPage.name
-  handleImage1=()=>{
-      console.log("product front",this);
-  };
+  
 
   render() {
     return ( 
@@ -21,9 +20,7 @@ export class ProductPage extends Component {
                     <GridColumn computer='3'>
                         <Container>
                             
-                            <button 
-                                onClick={this.handleImage1}
-                                className= "btn btn-secondary btn-sm"><Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='top' centered/> Image1</button>
+                            
                             <ProductImageSlider />
                         </Container>
                     </GridColumn>
@@ -42,7 +39,9 @@ export class ProductPage extends Component {
                             <Divider hidden/>
                             Select size:
                             <Container fluid>
-                                <SelectSize />
+                            
+                            
+                            <SelectSize />
                             </Container>
                             <Divider hidden />
                             <Button color='green' size='massive' icon='shopping cart' fluid> 

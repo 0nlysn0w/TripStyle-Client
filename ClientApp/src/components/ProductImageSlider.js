@@ -30,6 +30,17 @@ export default class ProductImageSlider extends Component {
         <button   onClick={this.handleImage3}
  className= "btn btn-secondary btn2-sm"><Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='top' centered/></button>
     </Container>
+    <Container textAlign='vertical'>
+        <Divider hidden/>
+        <button   onClick={this.handlesize1}
+ className= "btn btn-secondary btn3-sm">XS</button>
+        <Divider hidden/>
+        </Container>
+
+ 
+          
+
+
   </div>
 )
 }}

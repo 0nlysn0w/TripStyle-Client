@@ -15,6 +15,7 @@ namespace TripStyle.Controllers
         public ProductController(TripStyleContext context)
         {
             _context = context;
+
             if (_context.Products.Count() == 0)
             {
                 var product = new Product
@@ -30,6 +31,7 @@ namespace TripStyle.Controllers
                 _context.Add(product);
                 _context.SaveChanges();
             }
+
         }
 
         [HttpGet]
@@ -39,11 +41,20 @@ namespace TripStyle.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public Product Get(int id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+            Product product = _context.Products.Find(id);
 
-            return new ObjectResult(product);
+            return product;
+        }
+
+        [HttpPost]
+        public Product Create(Product product)
+        {
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+            return product;
         }
 
     }

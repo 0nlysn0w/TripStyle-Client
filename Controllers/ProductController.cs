@@ -16,21 +16,21 @@ namespace TripStyle.Controllers
         {
             _context = context;
 
-            if (_context.Products.Count() == 0)
-            {
-                var product = new Product
-                {
-                    Name = "Backpack",
-                    Make = "Douchebags",
-                    Category = new Category
-                    {
-                        Name = "Bags"
-                    }
-                };
+            // if (_context.Products.Count() == 0)
+            // {
+            //     var product = new Product
+            //     {
+            //         Name = "Backpack",
+            //         Make = "Douchebags",
+            //         Category = new Category
+            //         {
+            //             Name = "Bags"
+            //         }
+            //     };
 
-                _context.Add(product);
-                _context.SaveChanges();
-            }
+            //     _context.Add(product);
+            //     _context.SaveChanges();
+            // }
 
         }
 
@@ -41,21 +41,24 @@ namespace TripStyle.Controllers
         }
 
         [HttpGet("{id}")]
-        public Product Get(int id)
+        public ActionResult<Product> Get(int id)
         {
             Product product = _context.Products.Find(id);
+            if  (product == null)
+            {
+                return NotFound();
+            }
 
             return product;
         }
 
         [HttpPost]
-        public Product Create(Product product)
+        public IActionResult Create(Product product)
         {
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            return product;
+            return CreatedAtRoute("Get", new { id = product.ProductId}, product);
         }
-
     }
 }

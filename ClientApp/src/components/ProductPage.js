@@ -27,7 +27,7 @@ export class ProductPage extends Component {
                     <GridColumn computer='8'>
                         <Divider hidden />
                         <Container textAlign='center'>
-                            <Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='big' />
+                            <Image id="largeImage" src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='big' />
                         </Container>
                     </GridColumn>
                     <GridColumn width='5' verticalAlign='center'>

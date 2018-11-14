@@ -4,15 +4,25 @@ import { Button } from 'semantic-ui-react'
 
 const src = '/images/wireframe/image.png'
 
+
 export default class ProductImageSlider extends Component {
   handleImage1=()=>{
-    console.log("product front",this);
+    var smalImage = document.getElementById("firstImage");
+    var largeImage = document.getElementById("largeImage");
+    
+    largeImage.setAttribute('src', smalImage.getAttribute('src'));
 };
   handleImage2=()=>{
-    console.log("product achter",this);
+    var smalImage = document.getElementById("secondImage");
+    var largeImage = document.getElementById("largeImage");
+    
+    largeImage.setAttribute('src', smalImage.getAttribute('src'));
 };
   handleImage3=()=>{
-    console.log("product side",this);
+    var smalImage = document.getElementById("thirdImage");
+    var largeImage = document.getElementById("largeImage");
+    
+    largeImage.setAttribute('src', smalImage.getAttribute('src'));
 };
 
   render(){
@@ -22,20 +32,16 @@ export default class ProductImageSlider extends Component {
     <Container textAlign='center'>
         <Divider hidden/>
         <button   onClick={this.handleImage1}
- className= "btn btn-secondary btn-sm"><Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='top' centered/></button>
+// className= "btn btn-secondary btn-sm"><largeImage.SetAttribute(img src={'https://placekitten.com/200/300'},smalImage.getAttribute(src={'https://placekitten.com/200/300'}) ) </button>
+className= "btn btn-secondary btn1-sm"><Image id='firstImage' src={'https://placekitten.com/200/300'} size='small' verticalAlign='top' centered/></button>
         <Divider hidden/>
         <button   onClick={this.handleImage2}
- className= "btn btn-secondary btn1-sm"><Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='top' centered/></button>
+ className= "btn btn-secondary btn1-sm"><Image id="secondImage" src={'https://placekitten.com/200/301'} size='small' verticalAlign='top' centered/></button>
         <Divider hidden/>
         <button   onClick={this.handleImage3}
- className= "btn btn-secondary btn2-sm"><Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='top' centered/></button>
+ className= "btn btn-secondary btn2-sm"><Image id="thirdImage"src={'https://placekitten.com/200/302'} size='small' verticalAlign='top' centered/></button>
     </Container>
-    <Container textAlign='vertical'>
-        <Divider hidden/>
-        <button   onClick={this.handlesize1}
- className= "btn btn-secondary btn3-sm">XS</button>
-        <Divider hidden/>
-        </Container>
+    
 
  
           

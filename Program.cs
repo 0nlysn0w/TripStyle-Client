@@ -15,7 +15,7 @@ namespace TripStyle
     {
         public static void Main(string[] args)
         {
-            //CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build().Run();
             using(var db = new TripStyleContext())
             {
             Random rnd = new Random();
@@ -200,7 +200,8 @@ namespace TripStyle
                 CreateAddresses();
             
             }
-            Database_Generator();
+            bool Genenrate = false;
+            if(Genenrate==true){Database_Generator();}
         }
 
             

@@ -15,23 +15,6 @@ namespace TripStyle.Controllers
         public ProductController(TripStyleContext context)
         {
             _context = context;
-
-            // if (_context.Products.Count() == 0)
-            // {
-            //     var product = new Product
-            //     {
-            //         Name = "Backpack",
-            //         Make = "Douchebags",
-            //         Category = new Category
-            //         {
-            //             Name = "Bags"
-            //         }
-            //     };
-
-            //     _context.Add(product);
-            //     _context.SaveChanges();
-            // }
-
         }
 
         [HttpGet]
@@ -40,7 +23,7 @@ namespace TripStyle.Controllers
             return _context.Products.ToList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetProduct")]
         public ActionResult<Product> Get(int id)
         {
             Product product = _context.Products.Find(id);
@@ -53,12 +36,52 @@ namespace TripStyle.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create([FromBody]Product product)
         {
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            return CreatedAtRoute("Get", new { id = product.ProductId}, product);
+            return CreatedAtRoute("GetProduct", new { id = product.ProductId}, product);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody]Product product)
+        {
+            var todo = _context.Products.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.Name = product.Name;
+            todo.Make = product.Make;
+            todo.Price = product.Price;
+            todo.Stock = product.Stock;
+            todo.Size = product.Size;
+            todo.Color = product.Color;
+            todo.Region = product.Region;
+            todo.Season = product.Season;
+            todo.Name = product.Name;
+
+            _context.Products.Update(todo);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetProduct", new { id = product.ProductId }, product);
+
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var todo = _context.Products.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(todo);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
     }
 }

@@ -39,7 +39,7 @@ export class ProductPage extends Component {
                                 <SelectSize />
                             </Container>
                             <Divider hidden />
-                            <Button color='green' size='massive' icon='shopping cart' fluid> 
+                            <Button color='green' size='massive' icon='plus cart' fluid> 
                             </Button>
                         </Container>
                     </GridColumn>

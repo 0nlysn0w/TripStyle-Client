@@ -5,11 +5,11 @@ import SearchExampleStandard from './SearchBar';
 import { Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import Home from './Home';
+import ShoppingCart from './ShoppingCart';
 
 
 export default class TopHeader extends Component {
   displayName = TopHeader.name
-  
 
   render() {
     return (
@@ -27,8 +27,7 @@ export default class TopHeader extends Component {
                 </Button>
             </MenuItem>
             <MenuItem>
-                <Button icon='shopping cart' color='green' circular onClick={Home.handleShowClick}>
-                </Button>
+            <ShoppingCart />
             </MenuItem>
         </Menu>
     );

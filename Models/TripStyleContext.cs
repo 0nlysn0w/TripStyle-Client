@@ -7,18 +7,31 @@ namespace TripStyle.Models
     {
         public TripStyleContext(DbContextOptions<TripStyleContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Purchase> Purchases { get; set; }
-        public DbSet<Image> Images { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<PurchaseLine> PurchaseLines { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //User - Role
+            // User has one role
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Role)
+                .WithMany(r => r.Users);
+
+            // Many user can have the same role
+            modelBuilder.Entity<Role>()
+                .HasMany(r => r.Users)
+                .WithOne(u => u.Role)
+                .HasForeignKey(u => u.RoleId);
+
             //User has one basket
             // modelBuilder.Entity<User>()
             //     .HasOne(u => u.Basket)
@@ -28,7 +41,7 @@ namespace TripStyle.Models
             modelBuilder.Entity<Basket>()
                 .HasOne(b => b.User)
                 .WithOne(u => u.Basket);
-                //.HasForeignKey<User>(u => u.BasketId);
+            //.HasForeignKey<User>(u => u.BasketId);
 
             //Basket and products 
             modelBuilder.Entity<BasketProduct>()
@@ -66,8 +79,13 @@ namespace TripStyle.Models
             // User has many addresses
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Addresses)
-                .WithOne(a => a.User)
-                .HasForeignKey(u => u.AddressId);
+                .WithOne(a => a.User);
+
+            // Address belongs to one user, optional
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.User)
+                .WithMany(u => u.Addresses)
+                .HasForeignKey(a => a.UserId);
 
             // User can have many purchases
             modelBuilder.Entity<User>()

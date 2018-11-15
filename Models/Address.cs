@@ -13,5 +13,6 @@ namespace TripStyle.Models
 
         public List<Purchase> Purchases { get; set; }
         public User User { get; set; }
+        public int? UserId { get; set; }
     }
 }

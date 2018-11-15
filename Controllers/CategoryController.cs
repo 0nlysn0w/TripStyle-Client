@@ -27,7 +27,7 @@ namespace TripStyle.Controllers
         public ActionResult<Category> GetById(int id)
         {
             Category category = _context.Categories.Find(id);
-            if  (category == null)
+            if (category == null)
             {
                 return NotFound();
             }
@@ -36,13 +36,43 @@ namespace TripStyle.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Category category)
+        public IActionResult Create([FromBody]Category category)
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
 
-            //return Ok();
-            return CreatedAtRoute("GetCategory", new { id = category.CategoryId}, category);
+            return CreatedAtRoute("GetCategory", new { id = category.CategoryId }, category);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody]Category category)
+        {
+            var todo = _context.Categories.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.Name = category.Name;
+
+            _context.Categories.Update(todo);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetCategory", new { id = category.CategoryId }, category);
+
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var todo = _context.Categories.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            _context.Categories.Remove(todo);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }

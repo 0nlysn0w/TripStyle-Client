@@ -19,6 +19,8 @@ namespace TripStyle.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Address>()
+                .HasKey(a => new { a.AddressId });
             //User has one basket
             // modelBuilder.Entity<User>()
             //     .HasOne(u => u.Basket)
@@ -54,9 +56,9 @@ namespace TripStyle.Models
                 .WithOne(i => i.Product);
 
             // Purchase has one address
-            modelBuilder.Entity<Purchase>()
-                .HasOne(p => p.DeliveryAddress)
-                .WithMany(a => a.Purchases);
+            // modelBuilder.Entity<Purchase>()
+            //     .HasOne(p => p.DeliveryAddress)
+            //     .WithMany(a => a.Purchases);
 
             // Product has one category
             modelBuilder.Entity<Product>()
@@ -66,8 +68,12 @@ namespace TripStyle.Models
             // User has many addresses
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Addresses)
-                .WithOne(a => a.User)
-                .HasForeignKey(u => u.AddressId);
+                .WithOne(a => a.User);
+
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.User)
+                .WithMany(u => u.Addresses)
+                .HasForeignKey(a => a.UserId);
 
             // User can have many purchases
             modelBuilder.Entity<User>()

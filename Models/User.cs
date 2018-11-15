@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TripStyle.Models
 {
@@ -19,6 +20,5 @@ namespace TripStyle.Models
         public Basket Basket { get; set; }
         public Role Role { get; set; }
         public List<Address> Addresses { get; set; }
-
     }
 }

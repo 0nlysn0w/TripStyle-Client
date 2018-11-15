@@ -18,7 +18,8 @@ namespace TripStyle.Migrations
 
             modelBuilder.Entity("TripStyle.Models.Address", b =>
                 {
-                    b.Property<int>("AddressId");
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City");
 
@@ -28,7 +29,11 @@ namespace TripStyle.Migrations
 
                     b.Property<string>("Type");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("AddressId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Addresses");
                 });
@@ -212,8 +217,7 @@ namespace TripStyle.Migrations
                 {
                     b.HasOne("TripStyle.Models.User", "User")
                         .WithMany("Addresses")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TripStyle.Models.BasketProduct", b =>
@@ -246,7 +250,7 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.Purchase", b =>
                 {
                     b.HasOne("TripStyle.Models.Address", "DeliveryAddress")
-                        .WithMany("Purchases")
+                        .WithMany()
                         .HasForeignKey("DeliveryAddressAddressId");
 
                     b.HasOne("TripStyle.Models.User", "User")

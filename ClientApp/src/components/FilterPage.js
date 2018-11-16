@@ -4,19 +4,17 @@ import FilterGrid from './FilterGrid';
 import FilterDropdown from './FilterDropdown';
 import Breadcrumbs from './Breadcrumbs';
 import { Container } from 'semantic-ui-react';
-import {Grid, Segment, Divider } from 'semantic-ui-react';
+import { Grid, Segment, Divider } from 'semantic-ui-react';
 
 export class FilterPage extends Component {
   displayName = FilterPage.name
 
   render() {
-    return ( 
+    return (
       <div>
         <TopHeader />
         <Container>
-          <Breadcrumbs/>
-          <Divider hidden/>
-          <FilterDropdown />
+          <Breadcrumbs />
         </Container>
         <Divider hidden />
         <Container>

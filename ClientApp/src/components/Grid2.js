@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Image, Menu } from 'semantic-ui-react'
+import { Grid, Image, Menu, Divider } from 'semantic-ui-react'
 import _ from 'lodash'
 
 export default class Grid2 extends Component {
@@ -25,72 +25,24 @@ export default class Grid2 extends Component {
     if (!isLoaded) {
       return <div>Loading...</div>;
     }
+    if (items && items.length) {
     return (
       <Grid>
         <Grid.Row columns={4} centered relaxed>
-          <Grid.Column>
-            {items.map(item => (
+          {items.map(item => (
+            <Grid.Column>
               <Menu fluid vertical>
                 <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+                <Menu.Item className='header'>{item.id}</Menu.Item>
                 <Menu.Item className='header'>{item.name}</Menu.Item>
-              </Menu> 
-            ))}
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row columns={4}>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu>
-          </Grid.Column>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu>
-          </Grid.Column>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu>
-          </Grid.Column>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu>
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row columns={4}>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu>
-          </Grid.Column>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu>
-          </Grid.Column>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu>
-          </Grid.Column>
-          <Grid.Column>
-            <Menu fluid vertical>
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-              <Menu.Item className='header'>Cats</Menu.Item>
-            </Menu></Grid.Column>
+                <Menu.Item className='header'>{item.email}</Menu.Item>
+              </Menu>
+              <Divider hidden/>
+            </Grid.Column>
+          ))}
         </Grid.Row>
       </Grid>
     )
-  }
-}
+  }else {
+    return <div>No items found</div>
+}}}

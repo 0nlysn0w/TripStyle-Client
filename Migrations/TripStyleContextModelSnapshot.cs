@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TripStyle.Models;
 
@@ -14,7 +15,9 @@ namespace TripStyle.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("TripStyle.Models.Address", b =>
                 {
@@ -38,7 +41,8 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.Basket", b =>
                 {
                     b.Property<int>("BasketId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasKey("BasketId");
 
@@ -63,7 +67,8 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name");
 
@@ -75,7 +80,8 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.Image", b =>
                 {
                     b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description");
 
@@ -95,7 +101,8 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CategoryId");
 
@@ -125,7 +132,8 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.Purchase", b =>
                 {
                     b.Property<int>("PurchaseId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("DeliveryAddressAddressId");
 
@@ -166,7 +174,8 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.Role", b =>
                 {
                     b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description");
 
@@ -180,7 +189,8 @@ namespace TripStyle.Migrations
             modelBuilder.Entity("TripStyle.Models.User", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BasketId");
 

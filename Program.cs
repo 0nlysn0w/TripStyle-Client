@@ -15,7 +15,7 @@ namespace TripStyle
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            //CreateWebHostBuilder(args).Build().Run();
             using(var db = new TripStyleContext())
             {
             Random rnd = new Random();
@@ -64,7 +64,7 @@ namespace TripStyle
                 };
                 Role r2 = new Role
                 {
-                    RoleId  =   0,
+                    RoleId  =   2,
                     Name    =   "Admin",
                     Description = "The Admin is King"
 

@@ -23,10 +23,10 @@ export default class RadioExampleRadioGroup extends Component {
         </Form.Field>
         <Form.Field>
           <Radio
-            label='female'
+            label='Female'
             name='radioGroup'
-            value='female'
-            checked={this.state.value === 'female'}
+            value='Female'
+            checked={this.state.value === 'Female'}
             onChange={this.handleChange}
           />
         </Form.Field>

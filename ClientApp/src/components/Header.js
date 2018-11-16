@@ -6,10 +6,11 @@ import { Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import Home from './Home';
 import ShoppingCart from './ShoppingCart';
+import Login from './Login';
 
 
 export default class TopHeader extends Component {
-  displayName = TopHeader.name
+    displayName = TopHeader.name
 
   render() {
     return (
@@ -22,10 +23,9 @@ export default class TopHeader extends Component {
             <MenuItem position='right'>
                 <SearchExampleStandard></SearchExampleStandard>
             </MenuItem>
-            <MenuItem position='right'>
-                <Button icon='user' color='blue' circular>
-                </Button>
-            </MenuItem>
+            <MenuItem className="Login" position='right'>
+                    <Login />
+                </MenuItem>
             <MenuItem>
             <ShoppingCart />
             </MenuItem>

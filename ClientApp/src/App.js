@@ -5,6 +5,8 @@ import {Route, BrowserRouter, Switch } from 'react-router-dom';
 import { FilterPage } from './components/FilterPage';
 import ShoppingCart from './components/ShoppingCart';
 import { OrderPage } from './components/OrderPage';
+import {Login} from './components/Login';
+import { Registration } from './components/Registration';
 
 export default class App extends Component {
   displayName = App.name
@@ -19,6 +21,9 @@ export default class App extends Component {
           <Route path={'/order'} component={OrderPage} />
         </Switch>
        </BrowserRouter> 
+      // <div>
+      //   <Registration />
+      // </div>
     );
   }
 }

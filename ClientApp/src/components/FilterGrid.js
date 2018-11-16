@@ -6,11 +6,13 @@ import ColorButton from './ColorButton';
 import RegionCheckbox from './RegionCheckbox';
 import Grid2 from './Grid2';
 import { Divider } from 'semantic-ui-react';
-
+import FilterDropdown from './FilterDropdown'
 
 const GridExampleColumnWidth = () => (
   <Grid>
     <Grid.Column width={3}>
+        <FilterDropdown/>
+        <Divider hidden/>
         <GenCheckbox />
             <Divider hidden />
         <TypeCheckbox />

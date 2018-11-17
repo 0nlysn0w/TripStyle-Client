@@ -44,7 +44,16 @@ namespace TripStyle.Controllers
 
             return CreatedAtRoute("GetAddress", new { id = address.AddressId}, address);
         }
+
+        public IActionResult Delete([FromBody]Address address)
+        {
+            _context.Addresses.Add(address);
+            
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetAddress", new { id = address.AddressId}, address);
+        } 
        
 
-    }
+    }   
 }

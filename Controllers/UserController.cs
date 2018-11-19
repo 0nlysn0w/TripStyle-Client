@@ -59,5 +59,20 @@ namespace TripStyle.Controllers
             //return Ok();
             return CreatedAtRoute("GetUser", new { Userid = user.UserId, Firstname = user.Firstname,Lastname = user.Lastname,Gender = user.Gender,Email = user.Email,Phonenumber = user.Phonenumber,Password = user.Password,Birthday = user.Birthdate,BasketId = user.BasketId});
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var todo = _context.Users.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            _context.Users.Remove(todo);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
     }
 }

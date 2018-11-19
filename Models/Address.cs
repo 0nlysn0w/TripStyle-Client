@@ -11,7 +11,7 @@ namespace TripStyle.Models
         public string City { get; set; }
         public string Country { get; set; }
 
-        public List<Purchase> Purchases { get; set; }
+        // public List<Purchase> Purchases { get; set; }
         public User User { get; set; }
         public int? UserId { get; set; }
     }

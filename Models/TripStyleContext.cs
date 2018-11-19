@@ -20,18 +20,8 @@ namespace TripStyle.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //User - Role
-            // User has one role
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Role)
-                .WithMany(r => r.Users);
-
-            // Many user can have the same role
-            modelBuilder.Entity<Role>()
-                .HasMany(r => r.Users)
-                .WithOne(u => u.Role)
-                .HasForeignKey(u => u.RoleId);
-
+            modelBuilder.Entity<Address>()
+                .HasKey(a => new { a.AddressId });
             //User has one basket
             // modelBuilder.Entity<User>()
             //     .HasOne(u => u.Basket)
@@ -67,9 +57,9 @@ namespace TripStyle.Models
                 .WithOne(i => i.Product);
 
             // Purchase has one address
-            modelBuilder.Entity<Purchase>()
-                .HasOne(p => p.DeliveryAddress)
-                .WithMany(a => a.Purchases);
+            // modelBuilder.Entity<Purchase>()
+            //     .HasOne(p => p.DeliveryAddress)
+            //     .WithMany(a => a.Purchases);
 
             // Product has one category
             modelBuilder.Entity<Product>()

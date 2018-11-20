@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Grid, Image, Menu, Divider, Container } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Grid, Image, Menu, Divider, Container, Card, CardContent, Icon } from 'semantic-ui-react'
 import _ from 'lodash'
+import { NavLink } from 'react-router-dom'
 
 export default class Grid2 extends Component {
   constructor(props) {
@@ -26,23 +27,30 @@ export default class Grid2 extends Component {
       return <div>Loading...</div>;
     }
     if (items && items.length) {
-    return (
-      <Grid>
-        <Grid.Row columns={4} centered relaxed>
-          {items.map(item => (
-            <Grid.Column>
-              <Menu fluid vertical>
-                <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-                <Menu.Item className='header'>{item.id}</Menu.Item>
-                <Menu.Item className='header'>{item.name}</Menu.Item>
-                <Menu.Item className='header'>{item.email}</Menu.Item>
-              </Menu>
-              <Divider hidden/>
-            </Grid.Column>
-          ))}
-        </Grid.Row>
-      </Grid>
-    )
-  }else {
-    return <div>No items found</div>
-}}}
+      return (
+        <Grid>
+          <Grid.Row columns={4} centered relaxed>
+            {items.map(item => (
+              <Grid.Column>
+                <NavLink to='./product'>
+                  <Card href='#card-example-link-card' color='teal'>
+                    <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+                    <CardContent>
+                      <Card.Header><Icon name='euro sign' />{item.id}</Card.Header>
+                      <Card.Meta>{item.name}</Card.Meta>
+                      <Card.Description>{item.email}</Card.Description>
+                      {/* <Menu.Item className='header'>{item.email}</Menu.Item> */}
+                    </CardContent>
+                  </Card>
+                  <Divider hidden />
+                </NavLink>
+              </Grid.Column>
+            ))}
+          </Grid.Row>
+        </Grid>
+      )
+    } else {
+      return <div>No items found</div>
+    }
+  }
+}

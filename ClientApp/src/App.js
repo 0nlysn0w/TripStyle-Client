@@ -19,11 +19,9 @@ export default class App extends Component {
           <Route path={'/product'} component={ProductPage} />
           <Route path={'/filter'} component={FilterPage} />
           <Route path={'/order'} component={OrderPage} />
+          <Route path={'/register'} component={Registration} />
         </Switch>
-       </BrowserRouter> 
-      // <div>
-      //   <Registration />
-      // </div>
+       </BrowserRouter>
     );
   }
 }

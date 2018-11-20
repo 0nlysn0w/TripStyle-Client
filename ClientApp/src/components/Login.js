@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form, Popup, Divider } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 
 export default class Login extends React.Component {
 
@@ -10,15 +11,15 @@ export default class Login extends React.Component {
         {<Form>
           <Form.Field>
             <label>User name</label>
-            <input placeholder='User name' />
+            <input placeholder='User name' required />
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input placeholder='Password' />
+            <input placeholder='Password' required />
           </Form.Field>
           <Button positive fluid>Login</Button>
-          <Divider fitted/>
-          <a>Don't have an account yet? register here.</a>
+          <Divider fitted />
+          <NavLink to='/register'>Don't have an account yet? register here.</NavLink>
         </Form>}
       </Popup>)
   }

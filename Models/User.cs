@@ -17,6 +17,7 @@ namespace TripStyle.Models
 
         public int BasketId { get; set; }
         public ICollection<Purchase> Purchases { get; set; }
+        public ICollection<PurchaseLine> PurchaseLines {get;set;}
         // public Basket Basket { get; set; }
         public Role Role { get; set; }
         public int RoleId { get; set; }

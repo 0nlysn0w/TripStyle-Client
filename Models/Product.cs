@@ -19,6 +19,6 @@ namespace TripStyle.Models
         public ICollection<Image> Images { get; set; }
         public Category Category { get; set; }
         public ICollection<PurchaseLine> PurchaseLines { get; set; }
-        public ICollection<BasketProduct> BasketProducts { get; set; }
+        // public ICollection<BasketProduct> BasketProducts { get; set; }
     }
 }

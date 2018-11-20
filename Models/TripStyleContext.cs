@@ -8,8 +8,8 @@ namespace TripStyle.Models
         public TripStyleContext(DbContextOptions<TripStyleContext> options) : base(options) { }
 
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Basket> Baskets { get; set; }
-        public DbSet<BasketProduct> BasketProducts { get; set; }
+        // public DbSet<Basket> Baskets { get; set; }
+        // public DbSet<BasketProduct> BasketProducts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -20,6 +20,7 @@ namespace TripStyle.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            /*
             modelBuilder.Entity<Address>()
                 .HasKey(a => new { a.AddressId });
             //User has one basket
@@ -81,6 +82,7 @@ namespace TripStyle.Models
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Purchases)
                 .WithOne(p => p.User);
+                */
 
             // Product and Purchase many to many
             modelBuilder.Entity<PurchaseLine>(entity =>

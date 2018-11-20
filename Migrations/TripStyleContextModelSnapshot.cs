@@ -38,31 +38,6 @@ namespace TripStyle.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("TripStyle.Models.Basket", b =>
-                {
-                    b.Property<int>("BasketId")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("BasketId");
-
-                    b.ToTable("Baskets");
-                });
-
-            modelBuilder.Entity("TripStyle.Models.BasketProduct", b =>
-                {
-                    b.Property<int>("BasketId");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<string>("Quantity");
-
-                    b.HasKey("BasketId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("BasketProducts");
-                });
-
             modelBuilder.Entity("TripStyle.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -130,15 +105,13 @@ namespace TripStyle.Migrations
                     b.Property<int>("PurchaseId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("DeliveryAddressAddressId");
+                    b.Property<bool>("IsConfirmed");
 
                     b.Property<DateTime>("OrderDate");
 
                     b.Property<int?>("UserId");
 
                     b.HasKey("PurchaseId");
-
-                    b.HasIndex("DeliveryAddressAddressId");
 
                     b.HasIndex("UserId");
 
@@ -163,7 +136,7 @@ namespace TripStyle.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("PurchaseLine");
+                    b.ToTable("PurchaseLines");
                 });
 
             modelBuilder.Entity("TripStyle.Models.Role", b =>
@@ -201,12 +174,9 @@ namespace TripStyle.Migrations
 
                     b.Property<string>("Phonenumber");
 
-                    b.Property<int?>("RoleId");
+                    b.Property<int>("RoleId");
 
                     b.HasKey("UserId");
-
-                    b.HasIndex("BasketId")
-                        .IsUnique();
 
                     b.HasIndex("RoleId");
 
@@ -218,19 +188,6 @@ namespace TripStyle.Migrations
                     b.HasOne("TripStyle.Models.User", "User")
                         .WithMany("Addresses")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("TripStyle.Models.BasketProduct", b =>
-                {
-                    b.HasOne("TripStyle.Models.Basket", "Basket")
-                        .WithMany("BasketProducts")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("TripStyle.Models.Product", "Product")
-                        .WithMany("BasketProducts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TripStyle.Models.Image", b =>
@@ -249,10 +206,6 @@ namespace TripStyle.Migrations
 
             modelBuilder.Entity("TripStyle.Models.Purchase", b =>
                 {
-                    b.HasOne("TripStyle.Models.Address", "DeliveryAddress")
-                        .WithMany()
-                        .HasForeignKey("DeliveryAddressAddressId");
-
                     b.HasOne("TripStyle.Models.User", "User")
                         .WithMany("Purchases")
                         .HasForeignKey("UserId");
@@ -273,14 +226,10 @@ namespace TripStyle.Migrations
 
             modelBuilder.Entity("TripStyle.Models.User", b =>
                 {
-                    b.HasOne("TripStyle.Models.Basket", "Basket")
-                        .WithOne("User")
-                        .HasForeignKey("TripStyle.Models.User", "BasketId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("TripStyle.Models.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

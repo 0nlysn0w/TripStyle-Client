@@ -8,9 +8,9 @@ namespace TripStyle.Models
     {
         public int PurchaseId { get; set; }
         public DateTime OrderDate { get; set; }
+        public bool IsConfirmed { get; set; }
 
         public User User { get; set; }
-        public Address DeliveryAddress { get; set; }
         public ICollection<PurchaseLine> PurchaseLines { get; set; }
     }
 }

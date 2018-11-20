@@ -19,6 +19,7 @@ namespace TripStyle.Models
         public ICollection<Purchase> Purchases { get; set; }
         public Basket Basket { get; set; }
         public Role Role { get; set; }
+        public int RoleId { get; set; }
         public List<Address> Addresses { get; set; }
     }
 }

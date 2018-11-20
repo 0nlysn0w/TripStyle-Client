@@ -7,15 +7,16 @@ namespace TripStyle.Models
     {
         public TripStyleContext(DbContextOptions<TripStyleContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Purchase> Purchases { get; set; }
-        public DbSet<Image> Images { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<PurchaseLine> PurchaseLines { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +31,7 @@ namespace TripStyle.Models
             modelBuilder.Entity<Basket>()
                 .HasOne(b => b.User)
                 .WithOne(u => u.Basket);
-                //.HasForeignKey<User>(u => u.BasketId);
+            //.HasForeignKey<User>(u => u.BasketId);
 
             //Basket and products 
             modelBuilder.Entity<BasketProduct>()
@@ -70,6 +71,7 @@ namespace TripStyle.Models
                 .HasMany(u => u.Addresses)
                 .WithOne(a => a.User);
 
+            // Address belongs to one user, optional
             modelBuilder.Entity<Address>()
                 .HasOne(a => a.User)
                 .WithMany(u => u.Addresses)
@@ -81,23 +83,26 @@ namespace TripStyle.Models
                 .WithOne(p => p.User);
 
             // Product and Purchase many to many
-            modelBuilder.Entity<PurchaseLine>()
-                .HasKey(pl => new
+            modelBuilder.Entity<PurchaseLine>(entity =>
                 {
-                    pl.PurchaseId,
-                    pl.ProductId
+                    // Foreign keys of PurchaseLine
+                    entity
+                        .HasKey(pl => new
+                        {
+                            pl.PurchaseId,
+                            pl.ProductId
+                        });
+
+                    entity
+                        .HasOne(pl => pl.Purchase)
+                        .WithMany(pu => pu.PurchaseLines)
+                        .HasForeignKey(pl => pl.PurchaseId);
+
+                    entity
+                        .HasOne(pl => pl.Product)
+                        .WithMany(li => li.PurchaseLines)
+                        .HasForeignKey(pl => pl.ProductId);
                 });
-
-            modelBuilder.Entity<PurchaseLine>()
-                .HasOne(pl => pl.Purchase)
-                .WithMany(pu => pu.PurchaseLines)
-                .HasForeignKey(pl => pl.PurchaseId);
-
-            modelBuilder.Entity<PurchaseLine>()
-                .HasOne(pl => pl.Product)
-                .WithMany(li => li.PurchaseLines)
-                .HasForeignKey(pl => pl.ProductId);
-
 
 
 

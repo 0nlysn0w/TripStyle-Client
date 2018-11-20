@@ -1,10 +1,10 @@
 /Properties/launchSettings.json
 
 # exclude .vscode folder
-.vscode/*
+.vscode/
 
 # exclude Migrations folder
-/Migrations/*
+/Migrations/
 
 # exclude SQLite database
 ./tripstyle.db

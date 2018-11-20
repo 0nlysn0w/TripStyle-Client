@@ -83,23 +83,26 @@ namespace TripStyle.Models
                 .WithOne(p => p.User);
 
             // Product and Purchase many to many
-            modelBuilder.Entity<PurchaseLine>()
-                .HasKey(pl => new
+            modelBuilder.Entity<PurchaseLine>(entity =>
                 {
-                    pl.PurchaseId,
-                    pl.ProductId
+                    // Foreign keys of PurchaseLine
+                    entity
+                        .HasKey(pl => new
+                        {
+                            pl.PurchaseId,
+                            pl.ProductId
+                        });
+
+                    entity
+                        .HasOne(pl => pl.Purchase)
+                        .WithMany(pu => pu.PurchaseLines)
+                        .HasForeignKey(pl => pl.PurchaseId);
+
+                    entity
+                        .HasOne(pl => pl.Product)
+                        .WithMany(li => li.PurchaseLines)
+                        .HasForeignKey(pl => pl.ProductId);
                 });
-
-            modelBuilder.Entity<PurchaseLine>()
-                .HasOne(pl => pl.Purchase)
-                .WithMany(pu => pu.PurchaseLines)
-                .HasForeignKey(pl => pl.PurchaseId);
-
-            modelBuilder.Entity<PurchaseLine>()
-                .HasOne(pl => pl.Product)
-                .WithMany(li => li.PurchaseLines)
-                .HasForeignKey(pl => pl.ProductId);
-
 
 
 

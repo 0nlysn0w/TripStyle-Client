@@ -31,7 +31,7 @@ export class Registration extends Component {
                                         <Form.Input label='House number' placeholder='House number' required />
                                     </Form.Group>
                                     <Form.Checkbox label='I agree to the Terms and Conditions' required />
-                                    <Form.Checkbox label='I agree to take part in the "human centipide project"' />
+                                    {/* <Form.Checkbox label='I agree to take part in the "human centipide project"' /> */}
                                 </Container>
                                 <Divider hidden fitted />
                                 <Button type='submit'>Submit</Button>

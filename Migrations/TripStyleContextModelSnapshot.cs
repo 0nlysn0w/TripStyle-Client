@@ -158,8 +158,6 @@ namespace TripStyle.Migrations
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BasketId");
-
                     b.Property<string>("Birthdate");
 
                     b.Property<string>("Email");

@@ -27,7 +27,7 @@ namespace TripStyle
                 // opt => opt.UseSqlServer("Data Source=145.24.222.139,8080;" +
                 //                             "Database=TripStyle2;Persist Security Info=True;" +
                 //                             "User ID=sa; Password=Tripstyle2018")
-                opt => opt.UseSqlite("Data Source=tripstyle.db")
+                //SSopt => opt.UseSqlite("Data Source=tripstyle.db")
             );
 
             //             services.AddDbContextPool<YourDbContext>( // replace "YourDbContext" with the class name of your DbContext

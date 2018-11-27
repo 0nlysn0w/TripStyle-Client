@@ -56,8 +56,7 @@ namespace TripStyle.Controllers
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            //return Ok();
-            return CreatedAtRoute("GetUser", new { Userid = user.UserId, Firstname = user.Firstname,Lastname = user.Lastname,Gender = user.Gender,Email = user.Email,Phonenumber = user.Phonenumber,Password = user.Password,Birthday = user.Birthdate,BasketId = user.BasketId});
+            return CreatedAtRoute("GetRole", new { UserId = user.UserId}, user);
         }
 
         [HttpDelete("{id}")]

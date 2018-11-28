@@ -25,10 +25,10 @@ export default class GridExampleRelaxed extends Component {
     if (!isLoaded) {
       return <div>Loading...</div>;
     }
-    if (items && (items.length = 4)) {
+    if (items && (items.length = 5)) {
       return (
         <Grid>
-          <Grid.Row columns={4} centered relaxed>
+          <Grid.Row columns={5} centered relaxed>
             {items.map(item => (
               <Grid.Column>
                 <NavLink to='./product'>

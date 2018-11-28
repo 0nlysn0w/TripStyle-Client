@@ -25,7 +25,7 @@ namespace TripStyle.Models
         {
 
             optionsBuilder.UseSqlServer("Data Source=145.24.222.139,8080;" +
-                                                         "Database=TripStyle2;Persist Security Info=True;" +
+                                                         "Database=TripStyleDB;Persist Security Info=True;" +
                                                          "User ID=sa; Password=Tripstyle2018");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

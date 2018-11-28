@@ -41,7 +41,7 @@ namespace TripStyle
                             Email = Faker.Internet.Email(Firstname),
                             Phonenumber = rnd.Next(600000000, 699999999).ToString(),
                             Password = rnd.Next(1000, 100000).ToString(),
-                            BasketId = x + 1
+                            BasketId = x
 
                         };
 
@@ -86,7 +86,7 @@ namespace TripStyle
                 //Function to Create Categories //
                 void CreateCategories()
                 {
-                    int w = 2;
+                    int w = 0;
                     while (w < ClothingCategories.Length)
                     {
                         Category c = new Category
@@ -182,7 +182,7 @@ namespace TripStyle
                     //Run Second
                     //CreateCategories();
                     //Run Thrid   
-                    //CreateUser();
+                    CreateUser();
                     //Run Fourth
                     //CreateProducts();
                     //Run Fifth

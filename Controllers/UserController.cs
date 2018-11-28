@@ -32,9 +32,9 @@ namespace TripStyle.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Category> Get()
+        public IEnumerable<User> Get()
         {
-            return _context.Categories.ToList();
+            return _context.Users.ToList();
         }
 
         [HttpGet("{id}",Name = "GetUser")]

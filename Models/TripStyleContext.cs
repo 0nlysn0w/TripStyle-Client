@@ -5,7 +5,6 @@ namespace TripStyle.Models
 {
     public class TripStyleContext : DbContext
     {
-        public TripStyleContext() {}
         public TripStyleContext(DbContextOptions<TripStyleContext> options) : base(options) { }
 
         public DbSet<Address> Addresses { get; set; }
@@ -19,10 +18,10 @@ namespace TripStyle.Models
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=tripstyle.db");
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     optionsBuilder.UseSqlite("Data Source=tripstyle.db");
+        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -33,20 +33,27 @@ namespace TripStyle
                         string Firstname = Firstname = Faker.Name.First();
                         User m = new User
                         {
-                            UserId = x,
+                            //UserId = x,
                             RoleId = 1,
                             Firstname = Firstname,
                             Lastname = Faker.Name.Last(),
                             Gender = Gender[new Random().Next(0, Gender.Length)],
                             Email = Faker.Internet.Email(Firstname),
                             Phonenumber = rnd.Next(600000000, 699999999).ToString(),
-                            Password = rnd.Next(1000, 100000).ToString()
+                            Password = rnd.Next(1000, 100000).ToString(),
+                            BasketId = x + 1
 
                         };
 
                         db.Users.Add(m);
                         db.SaveChanges();
                         x = x + 1;
+                        Basket b = new Basket
+                        {
+                            
+                        };
+                        db.Baskets.Add(b);
+                        db.SaveChanges();
                     }
                 }
                 //Fuction to Create All Roles      // Run once
@@ -57,14 +64,14 @@ namespace TripStyle
                     {
                         Role r = new Role
                         {
-                            RoleId = 1,
+                            //RoleId = 1,
                             Name = "Customer",
                             Description = "The Customer is King"
 
                         };
                         Role r2 = new Role
                         {
-                            RoleId = 2,
+                            //RoleId = 2,
                             Name = "Admin",
                             Description = "The Admin is King"
 
@@ -84,7 +91,7 @@ namespace TripStyle
                     {
                         Category c = new Category
                         {
-                            CategoryId = w,
+                            //CategoryId = w,
                             Name = ClothingCategories[w]
                         };
                         db.Categories.Add(c);
@@ -107,7 +114,7 @@ namespace TripStyle
                         string RealSize = Size[new Random().Next(0, Size.Length)];
                         Product p = new Product
                         {
-                            ProductId = y,
+                            //ProductId = y,
                             Name = Faker.Name.First() + " " + Clothingname[pp] + " " + RealSize,
                             Make = Make[new Random().Next(0, Make.Length)],
                             Price = rnd.Next(5, 100).ToString(),
@@ -134,7 +141,7 @@ namespace TripStyle
                     {
                         Image i = new Image
                         {
-                            ImageId = z,
+                            //ImageId = z,
                             Url = UrlsCats[rnd.Next(0, UrlsCats.Length)],
                             Description = "Picture of Cats",
                             Order = rnd.Next(1, 3).ToString(),
@@ -156,7 +163,7 @@ namespace TripStyle
                     {
                         TripStyle.Models.Address a = new TripStyle.Models.Address
                         {
-                            AddressId = b,
+                            //AddressId = b,
                             Type = TypeAdresses[rnd.Next(0, TypeAdresses.Length)],
                             Street = Faker.Address.StreetName(),
                             City = Faker.Address.City(),
@@ -171,21 +178,21 @@ namespace TripStyle
                 void Database_Generator()
                 {
                     //Run First
-                    CreateRole();
+                    //CreateRole();
                     //Run Second
-                    CreateCategories();
+                    //CreateCategories();
                     //Run Thrid   
-                    CreateUser();
+                    //CreateUser();
                     //Run Fourth
-                    CreateProducts();
+                    //CreateProducts();
                     //Run Fifth
-                    CreateImages();
+                    //CreateImages();
                     //Run Seventh();
-                    CreateAddresses();
+                    //CreateAddresses();
 
                 }
-                bool Genenrate = false;
-                if (Genenrate == true) { Database_Generator(); }
+
+                if (true) { Database_Generator(); }
             }
 
 

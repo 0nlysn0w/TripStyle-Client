@@ -17,10 +17,17 @@ namespace TripStyle.Controllers
             _context = context;
         }
 
-        public IQueryable<Purchase> GetBasketOfUser(int id)
+        public IQueryable<Purchase> GetOrderofUser(int id)
         {
          
-            var purchase = _context.Purchases.Where(i => i.IsConfirmed == false);
+            var purchase = _context.Purchases.Where(i => i.IsWishlist == false);
+
+            return purchase;
+        }
+        public IQueryable<Purchase> GetWishlistofUser(int id)
+        {
+         
+            var purchase = _context.Purchases.Where(i => i.IsWishlist == false);
 
             return purchase;
         }

@@ -40,6 +40,14 @@ export class Registration extends Component {
                     </Grid.Column>
                 </Grid>
                 <Divider hidden />
+                <Divider hidden />
+                <Divider hidden />
+                <Divider hidden />
+                <Divider hidden />
+                <Divider hidden />
+                <Divider hidden />
+                <Divider hidden />
+                <Divider hidden />
                 <Footer />
             </div>
         );

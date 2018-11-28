@@ -17,6 +17,14 @@ namespace TripStyle.Controllers
             _context = context;
         }
 
+        public IQueryable<Purchase> GetBasketOfUser(int id)
+        {
+         
+            var purchase = _context.Purchases.Where(i => i.IsConfirmed == false);
+
+            return purchase;
+        }
+
         // TODO: implement correct CRUD functions. The current one are just placeholders
         [HttpGet]
         public IEnumerable<Purchase> Get()

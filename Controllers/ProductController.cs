@@ -38,6 +38,11 @@ namespace TripStyle.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]Product product)
         {
+            if (product == null)
+            {
+                return NoContent();
+            }
+
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -65,8 +70,7 @@ namespace TripStyle.Controllers
 
             _context.Products.Update(todo);
             _context.SaveChanges();
-            return CreatedAtRoute("GetProduct", new { id = product.ProductId }, product);
-
+            return CreatedAtRoute("GetProduct", new { id = todo.ProductId }, todo);
         }
 
         [HttpDelete("{id}")]
@@ -82,6 +86,5 @@ namespace TripStyle.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-
     }
 }

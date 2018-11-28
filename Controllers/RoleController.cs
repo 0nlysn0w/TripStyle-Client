@@ -39,12 +39,17 @@ namespace TripStyle.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]Role role)
         {
+            if (role == null)
+            {
+                return NoContent();
+            }
+
             _context.Roles.Add(role);
-            
             _context.SaveChanges();
 
             return CreatedAtRoute("GetRole", new { id = role.RoleId}, role);
         }
+
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]Role role)
         {
@@ -55,12 +60,14 @@ namespace TripStyle.Controllers
             }
 
             todo.Name = role.Name;
+            todo.Description = role.Description;
 
             _context.Roles.Update(todo);
             _context.SaveChanges();
-            return CreatedAtRoute("GetCategory", new { id = role.RoleId }, role);
+            return CreatedAtRoute("GetRole", new { id = todo.RoleId }, todo);
 
         }
+
        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -74,6 +81,5 @@ namespace TripStyle.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-
     }
 }

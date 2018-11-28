@@ -38,6 +38,11 @@ namespace TripStyle.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]Category category)
         {
+            if (category == null)
+            {
+                return NoContent();
+            }
+
             _context.Categories.Add(category);
             _context.SaveChanges();
 
@@ -57,7 +62,7 @@ namespace TripStyle.Controllers
 
             _context.Categories.Update(todo);
             _context.SaveChanges();
-            return CreatedAtRoute("GetCategory", new { id = category.CategoryId }, category);
+            return CreatedAtRoute("GetCategory", new { id = todo.CategoryId }, todo);
 
         }
 

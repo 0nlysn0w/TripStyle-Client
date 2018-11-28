@@ -15,20 +15,7 @@ namespace TripStyle.Controllers
 
         public UserController(TripStyleContext context)
         {
-            // _context = context;
-            //   if (_context.Users.Count() == 0)
-            //   {
-            //       var user = new User
-            //       {
-            //          UserId = 1,
-            //          Firstname = "Luuk",
-            //          Lastname = "Crushly",
-            //          BasketId = 1
-            //       };
-
-            //       _context.Add(user);
-            //       _context.SaveChanges();
-            //   }
+            _context = context;
         }
 
         [HttpGet]
@@ -37,11 +24,11 @@ namespace TripStyle.Controllers
             return _context.Users.ToList();
         }
 
-        [HttpGet("{id}",Name = "GetUser")]
+        [HttpGet("{id}", Name = "GetUser")]
         public ActionResult<User> GetById(int id)
         {
             User user = _context.Users.Find(id);
-            if  (user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -52,11 +39,37 @@ namespace TripStyle.Controllers
         [HttpPost]
         public IActionResult Create(User user)
         {
-            if(user== null){return NoContent();}
+            if (user == null)
+            {
+                return NoContent();
+            }
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetRole", new { UserId = user.UserId}, user);
+            return CreatedAtRoute("GetUser", new { UserId = user.UserId }, user);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody]User user)
+        {
+            var todo = _context.Users.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.Firstname = user.Firstname;
+            todo.Lastname = user.Lastname;
+            todo.Gender = user.Gender;
+            todo.Email = user.Email;
+            todo.Phonenumber = user.Phonenumber;
+            todo.Password = user.Password;
+            todo.Birthdate = user.Birthdate;
+
+            _context.Users.Update(todo);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetUser", new { id = todo.UserId }, todo);
+
         }
 
         [HttpDelete("{id}")]
@@ -72,6 +85,5 @@ namespace TripStyle.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-
     }
 }

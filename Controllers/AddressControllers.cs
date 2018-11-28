@@ -38,11 +38,34 @@ namespace TripStyle.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]Address address)
         {
+            if (address == null)
+            {
+                return NoContent();
+            }
+
             _context.Addresses.Add(address);
-            
             _context.SaveChanges();
 
             return CreatedAtRoute("GetAddress", new { id = address.AddressId}, address);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody]Address address)
+        {
+            var todo = _context.Addresses.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.Type = address.Type;
+            todo.Street = address.Street;
+            todo.City = address.City;
+            todo.Country = address.Country;
+
+            _context.Addresses.Update(todo);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetAddress", new { id = todo.AddressId }, todo);
         }
 
         [HttpDelete("{id}")]
@@ -58,6 +81,5 @@ namespace TripStyle.Controllers
             _context.SaveChanges();
             return NoContent();
         }      
-
     }   
 }

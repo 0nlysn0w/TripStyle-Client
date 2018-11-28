@@ -39,8 +39,12 @@ namespace TripStyle.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]Image image)
         {
+            if (image == null)
+            {
+                return NoContent();
+            }
+
             _context.Images.Add(image);
-            
             _context.SaveChanges();
 
             return CreatedAtRoute("GetImage", new { id = image.ImageId}, image);
@@ -55,10 +59,11 @@ namespace TripStyle.Controllers
             }
 
             todo.Url = image.Url;
+            todo.Description = image.Description;
 
             _context.Images.Update(todo);
             _context.SaveChanges();
-            return CreatedAtRoute("GetCategory", new { id = image.ImageId }, image);
+            return CreatedAtRoute("GetImage", new { id = todo.ImageId }, todo);
 
         }
        [HttpDelete("{id}")]
@@ -74,6 +79,5 @@ namespace TripStyle.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-
     }
 }

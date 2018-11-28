@@ -37,16 +37,20 @@ namespace TripStyle.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]Purchase Purchase)
+        public IActionResult Create([FromBody]Purchase purchase)
         {
-            _context.Purchases.Add(Purchase);
+            if (purchase == null)
+            {
+                return NoContent();
+            }
+            _context.Purchases.Add(purchase);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetPurchase", new { id = Purchase.PurchaseId }, Purchase);
+            return CreatedAtRoute("GetPurchase", new { id = purchase.PurchaseId }, purchase);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]Purchase Purchase)
+        public IActionResult Update(int id, [FromBody]Purchase purchase)
         {
             var todo = _context.Purchases.Find(id);
             if (todo == null)
@@ -56,7 +60,7 @@ namespace TripStyle.Controllers
 
             _context.Purchases.Update(todo);
             _context.SaveChanges();
-            return CreatedAtRoute("GetPurchase", new { id = Purchase.PurchaseId }, Purchase);
+            return CreatedAtRoute("GetPurchase", new { id = todo.PurchaseId }, todo);
 
         }
 

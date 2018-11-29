@@ -18,13 +18,31 @@ namespace TripStyle.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IQueryable<Product> Get()
         {
-            return _context.Products.ToList();
+                var result = from p in _context.Products 
+                join i in _context.Images
+                on p.ProductId equals i.ImageId into ProIma
+                select new Product{
+                    ProductId = p.ProductId,
+                    Price = p.Price,
+                    Name = p.Name,
+                    Make = p.Make,
+                    Stock =p.Stock,
+                    Size = p.Size,
+                    Color =p.Color,
+                    Region =p.Region,
+                    Season = p.Season,
+                    Category =p.Category,
+                    PurchaseLines = p.PurchaseLines,
+                    //ReleaseYear = m.ReleaseYear,
+                    Images = ProIma.ToList()
+                };
+                return result;
         }
 
         [HttpGet("{id}", Name = "GetProduct")]
-        public ActionResult<Product> Get(int id)
+        public IQueryable<Product> Get(int id)
         {
 
             //var product = _context.Products.FirstOrDefault(p => p.ProductId ==id);
@@ -33,14 +51,35 @@ namespace TripStyle.Controllers
             //    return NotFound ();
             //    }
             //return new ObjectResult (product);
-
-            Product product = _context.Products.Find(id);
-            if  (product == null)
-            {
-                return NotFound();
-            }
-            return product;
+            
+            // Product product = _context.Products.Find(id);
+            // if  (product == null)
+            // {
+            //     return NotFound();
+            // }
+            // return product;
+                var result = from p in _context.Products where p.ProductId == id
+                join i in _context.Images
+                on p.ProductId equals i.ImageId into ProIma
+                select new Product{
+                    ProductId = p.ProductId,
+                    Price = p.Price,
+                    Name = p.Name,
+                    Make = p.Make,
+                    Stock =p.Stock,
+                    Size = p.Size,
+                    Color =p.Color,
+                    Region =p.Region,
+                    Season = p.Season,
+                    Category =p.Category,
+                    PurchaseLines = p.PurchaseLines,
+                    //ReleaseYear = m.ReleaseYear,
+                    Images = ProIma.ToList()
+                };
+    
+            return result;
         }
+        
 
         [HttpPost]
         public IActionResult Create([FromBody]Product product)

@@ -16,7 +16,7 @@ namespace TripStyle
     {
         public static void Main(string[] args)
         {
-            //CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build().Run();
 
             using (var db = new TripStyleContext())
             {
@@ -197,7 +197,7 @@ namespace TripStyle
                     CreateAddresses();
 
                 }
-                if (true) { Database_Generator(); }
+                if (false) { Database_Generator(); }
             }
 
         }

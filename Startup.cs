@@ -24,9 +24,9 @@ namespace TripStyle
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TripStyleContext>(
-                // opt => opt.UseSqlServer("Data Source=145.24.222.139,8080;" +
-                //                             "Database=TripStyle2;Persist Security Info=True;" +
-                //                             "User ID=sa; Password=Tripstyle2018")
+                 //opt => opt.UseSqlServer("Data Source=145.24.222.139,8080;" +
+                  //                           "Database=TripStyleDB;Persist Security Info=True;" +
+                  //                           "User ID=sa; Password=Tripstyle2018")
                 opt => opt.UseSqlite("Data Source=tripstyle.db")
             );
 

@@ -16,7 +16,7 @@ namespace TripStyle
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            //CreateWebHostBuilder(args).Build().Run();
 
             using (var db = new TripStyleContext())
             {
@@ -29,17 +29,18 @@ namespace TripStyle
                 {
                     int x = 1;
                     string[] Gender = { "Male", "Female" };
-                    while (x < 100)
+                    while (x < 101)
                     {
                         string Firstname = Firstname = Faker.Name.First();
                         User m = new User
                         {
-                            UserId = x,
+                            //UserId = x,
                             RoleId = 1,
                             Firstname = Firstname,
                             Lastname = Faker.Name.Last(),
                             Gender = Gender[new Random().Next(0, Gender.Length)],
                             Email = Faker.Internet.Email(Firstname),
+                            Birthdate = "19730305",
                             Phonenumber = rnd.Next(600000000, 699999999).ToString(),
                             Password = rnd.Next(1000, 100000).ToString()
 
@@ -58,14 +59,14 @@ namespace TripStyle
                     {
                         Role r = new Role
                         {
-                            RoleId = 1,
+                            //RoleId = 1,
                             Name = "Customer",
                             Description = "The Customer is King"
 
                         };
                         Role r2 = new Role
                         {
-                            RoleId = 2,
+                            //RoleId = 2,
                             Name = "Admin",
                             Description = "The Admin is King"
 
@@ -80,12 +81,12 @@ namespace TripStyle
                 //Function to Create Categories //
                 void CreateCategories()
                 {
-                    int w = 2;
+                    int w = 0;
                     while (w < ClothingCategories.Length)
                     {
                         Category c = new Category
                         {
-                            CategoryId = w,
+                            //CategoryId = w,
                             Name = ClothingCategories[w]
                         };
                         db.Categories.Add(c);
@@ -106,9 +107,10 @@ namespace TripStyle
                     while (y < 200)
                     {
                         string RealSize = Size[new Random().Next(0, Size.Length)];
+                        int category = rnd.Next(1, 9);
                         Product p = new Product
                         {
-                            ProductId = y,
+                            //ProductId = y,
                             Name = Faker.Name.First() + " " + Clothingname[pp] + " " + RealSize,
                             Make = Make[new Random().Next(0, Make.Length)],
                             Price = rnd.Next(5, 100).ToString(),
@@ -117,7 +119,7 @@ namespace TripStyle
                             Color = Color[new Random().Next(0, Color.Length)],
                             Region = Region[new Random().Next(0, Region.Length)],
                             Season = Season[new Random().Next(0, Season.Length)],
-                            Category = db.Categories.Where(c => c.CategoryId == rnd.Next(2, 6)).FirstOrDefault()
+                            Category = db.Categories.Where(c => c.CategoryId == category).FirstOrDefault()
                         };
                         db.Products.Add(p);
                         db.SaveChanges();
@@ -135,7 +137,7 @@ namespace TripStyle
                     {
                         Image i = new Image
                         {
-                            ImageId = z,
+                            //ImageId = z,
                             Url = UrlsCats[rnd.Next(0, UrlsCats.Length)],
                             Description = "Picture of Cats",
                             Order = rnd.Next(1, 3).ToString(),
@@ -143,6 +145,16 @@ namespace TripStyle
 
                         };
                         db.Images.Add(i);
+                        Image i2 = new Image
+                        {
+                            //ImageId = z,
+                            Url = UrlsCats[rnd.Next(0, UrlsCats.Length)],
+                            Description = "Picture of Cats",
+                            Order = rnd.Next(1, 3).ToString(),
+                            Product = db.Products.Where(p => p.ProductId == z).FirstOrDefault()
+
+                        };
+                        db.Images.Add(i2);
                         db.SaveChanges();
                         z = z + 1;
                     }
@@ -152,13 +164,13 @@ namespace TripStyle
                 void CreateAddresses()
                 {
                     int b = 1;
-                    string[] TypeAdresses = { "FactuurAddress", "BezorgAddress" };
+                    string[] TypeAdresses = { "BezorgAddress" };
                     while (b < 100)
                     {
                         TripStyle.Models.Address a = new TripStyle.Models.Address
                         {
-                            AddressId = b,
-                            Type = TypeAdresses[rnd.Next(0, TypeAdresses.Length)],
+                            //AddressId = b,
+                            Type = TypeAdresses[0],
                             Street = Faker.Address.StreetName(),
                             City = Faker.Address.City(),
                             Country = Faker.Address.Country(),
@@ -185,8 +197,7 @@ namespace TripStyle
                     CreateAddresses();
 
                 }
-                bool Genenrate = false;
-                if (Genenrate == true) { Database_Generator(); }
+                if (true) { Database_Generator(); }
             }
 
         }

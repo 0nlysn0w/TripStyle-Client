@@ -26,13 +26,20 @@ namespace TripStyle.Controllers
         [HttpGet("{id}", Name = "GetProduct")]
         public ActionResult<Product> Get(int id)
         {
-            Product product = _context.Products.Find(id);
-            if  (product == null)
-            {
-                return NotFound();
-            }
 
-            return product;
+            var product = _context.Products.FirstOrDefault(p => p.ProductId ==id);
+            if (product == null)    
+                {  
+                return NotFound ();
+                }
+            return new ObjectResult (product);
+
+            //Product product = _context.Products.Find(id);
+            //if  (product == null)
+            //{
+            //    return NotFound();
+            //}
+            //return product;
         }
 
         [HttpPost]

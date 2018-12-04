@@ -1,19 +1,52 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Divider, Image, Container } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 const src = '/images/wireframe/image.png'
 
-const ProductImageSlider = () => (
+
+export default class ProductImageSlider extends Component {
+  handleImage1=()=>{
+    var smallImage = document.getElementById("firstImage");
+    var largeImage = document.getElementById("largeImage");
+    
+    largeImage.setAttribute('src', smallImage.getAttribute('src'));
+};
+  handleImage2=()=>{
+    var smallImage = document.getElementById("secondImage");
+    var largeImage = document.getElementById("largeImage");
+    
+    largeImage.setAttribute('src', smallImage.getAttribute('src'));
+};
+  handleImage3=()=>{
+    var smallImage = document.getElementById("thirdImage");
+    var largeImage = document.getElementById("largeImage");
+    
+    largeImage.setAttribute('src', smallImage.getAttribute('src'));
+};
+
+  render(){
+  return(
+  
   <div>
     <Container textAlign='center'>
         <Divider hidden/>
-        <Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='top' centered/> 
+        <button   onClick={this.handleImage1}
+// className= "btn btn-secondary btn-sm"><largeImage.SetAttribute(img src={'https://placekitten.com/200/300'},smalImage.getAttribute(src={'https://placekitten.com/200/300'}) ) </button>
+className= "btn btn-secondary btn1-sm"><Image id='firstImage' src={'https://placekitten.com/200/300'} size='small' verticalAlign='top' centered/></button>
         <Divider hidden/>
-        <Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='middle' centered/>
+        <button   onClick={this.handleImage2}
+ className= "btn btn-secondary btn1-sm"><Image id="secondImage" src={'https://placekitten.com/200/301'} size='small' verticalAlign='top' centered/></button>
         <Divider hidden/>
-        <Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='small' verticalAlign='bottom' centered/>
+        <button   onClick={this.handleImage3}
+ className= "btn btn-secondary btn2-sm"><Image id="thirdImage"src={'https://placekitten.com/200/302'} size='small' verticalAlign='top' centered/></button>
     </Container>
+    
+
+ 
+          
+
+
   </div>
 )
-
-export default ProductImageSlider
+}}

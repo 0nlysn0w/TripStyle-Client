@@ -8,6 +8,7 @@ import Footer from './Footer';
 
 export class ProductPage extends Component {
   displayName = ProductPage.name
+  
 
   render() {
     return ( 
@@ -18,13 +19,15 @@ export class ProductPage extends Component {
                 <GridRow>
                     <GridColumn computer='3'>
                         <Container>
+                            
+                            
                             <ProductImageSlider />
                         </Container>
                     </GridColumn>
                     <GridColumn computer='8'>
                         <Divider hidden />
                         <Container textAlign='center'>
-                            <Image src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='big' />
+                            <Image id="largeImage" src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='big' />
                         </Container>
                     </GridColumn>
                     <GridColumn width='5' verticalAlign='center'>
@@ -36,10 +39,12 @@ export class ProductPage extends Component {
                             <Divider hidden/>
                             Select size:
                             <Container fluid>
-                                <SelectSize />
+                            
+                            
+                            <SelectSize />
                             </Container>
                             <Divider hidden />
-                            <Button color='green' size='massive' icon='plus cart' fluid> 
+                            <Button color='green' size='massive' icon='shopping cart' fluid> 
                             </Button>
                         </Container>
                     </GridColumn>
@@ -59,4 +64,5 @@ export class ProductPage extends Component {
     );
   }
 }
+       
 

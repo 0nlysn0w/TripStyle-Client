@@ -21,15 +21,8 @@ export default class GridExampleRelaxed extends Component {
           items: json
         })
       });
-    fetch('https://localhost:5001/api/image')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          images: json
-        })
-      });
   }
+  
   render() {
     var { isLoaded, items, images } = this.state;
     if (!isLoaded) {
@@ -43,9 +36,7 @@ export default class GridExampleRelaxed extends Component {
               <Grid.Column>
                 <NavLink to='./product'>
                   <Card href='#card-example-link-card' color='teal'>
-                    {images.map(image => 
-                      <Image src= {image.url} />
-                    )}
+                      <Image src= {item.images[0].url} />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.name}</Card.Meta>

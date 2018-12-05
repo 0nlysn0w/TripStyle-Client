@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Grid, Image, Menu, Divider, Container, Card, CardContent, Icon } from 'semantic-ui-react'
+import { Button, Header, Grid, Image, Divider, Dimmer, Segment, Card, CardContent, Icon } from 'semantic-ui-react'
 import _ from 'lodash'
 import { NavLink } from 'react-router-dom'
- 
+
 export default class Grid2 extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +11,9 @@ export default class Grid2 extends Component {
       isLoaded: false
     }
   }
+
   componentDidMount() {
-    fetch('https://localhost:5001/api/product')
+    fetch('https://localhost:5001/api/product/')
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -21,11 +22,14 @@ export default class Grid2 extends Component {
         })
       });
   }
+
   render() {
+    console.log(this.props.products)
     var { isLoaded, items } = this.state;
     if (!isLoaded) {
       return <div>Loading...</div>;
     }
+
     if (items && items.length) {
       return (
         <Grid>
@@ -34,17 +38,16 @@ export default class Grid2 extends Component {
               <Grid.Column>
                 <NavLink to='./product'>
                   <Card href='#card-example-link-card' color='teal'>
-                    <Image src= {item.url}/>
+                    <Image src='http://placekitten.com/200/300' />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.name}</Card.Meta>
                       <Card.Description>{item.color}</Card.Description>
-                      {/* <Menu.Item className='header'>{item.email}</Menu.Item> */}
-                    </CardContent>
+                      </CardContent>
                   </Card>
                   <Divider hidden />
                 </NavLink>
-              </Grid.Column>
+                </Grid.Column>
             ))}
           </Grid.Row>
         </Grid>

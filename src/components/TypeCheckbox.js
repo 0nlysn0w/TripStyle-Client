@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Form, Radio } from 'semantic-ui-react'
-import { Divider } from 'semantic-ui-react';
 
 export default class RadioExampleRadioGroup extends Component {
   state = {}

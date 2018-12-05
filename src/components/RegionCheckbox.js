@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { Form, Radio } from 'semantic-ui-react'
-import { Divider } from 'semantic-ui-react';
 
 export default class RadioExampleRadioGroup extends Component {
-  state = {}
-  handleChange = (e, { value }) => this.setState({ value })
+  state = { region: '' }
+  // handleChange = (e, { value }) => this.setState({ value })
+  handleChange(value) {
+    this.setState({ region: value }, () => this.props.ChangeRegion(this.state.region));
+  }
 
   render() {
     return (
@@ -15,59 +17,61 @@ export default class RadioExampleRadioGroup extends Component {
         <Form.Field>
           <Radio
             label='Africa'
-            name='radioGroup'
+            name='region'
             value='Africa'
-            checked={this.state.value === 'Africa'}
-            onChange={this.handleChange}
+            checked={this.state.region === 'Africa'}
+            onChange={() => this.handleChange('Africa')}
           />
         </Form.Field>
         <Form.Field>
           <Radio
             label='Asia'
-            name='radioGroup'
+            name='region'
             value='Asia'
-            checked={this.state.value === 'Asia'}
-            onChange={this.handleChange}
+            checked={this.state.region === 'Asia'}
+            onChange={() => this.handleChange('Asia')}
           />
         </Form.Field>
         <Form.Field>
           <Radio
             label='Europe'
-            name='radioGroup'
+            name='region'
             value='Europe'
-            checked={this.state.value === 'Europe'}
-            onChange={this.handleChange}
+            checked={this.state.region === 'Europe'}
+            onChange={() => this.handleChange('Europe')}
           />
         </Form.Field>
         <Form.Field>
           <Radio
             label='North America'
-            name='radioGroup'
+            name='region'
             value='North America'
-            checked={this.state.value === 'North America'}
-            onChange={this.handleChange}
+            checked={this.state.region === 'North America'}
+            onChange={() => this.handleChange('North America')}
           />
         </Form.Field>
         <Form.Field>
           <Radio
             label='South America'
-            name='radioGroup'
+            name='region'
             value='South America'
-            checked={this.state.value === 'South America'}
-            onChange={this.handleChange}
+            checked={this.state.region === 'South America'}
+            onChange={() => this.handleChange('South America')}
           />
         </Form.Field>
         <Form.Field>
           <Radio
             label='Oceania'
-            name='radioGroup'
-            value='Oceania'
-            checked={this.state.value === 'Oceania'}
-            onChange={this.handleChange}
+            name='region'
+            value='Ocania'
+            checked={this.state.region === 'Ocania'}
+            onChange={() => this.handleChange('Ocania')}
           />
         </Form.Field>
       </Form>
     )
   }
+
 }
+
 

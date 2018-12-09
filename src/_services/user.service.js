@@ -1,5 +1,5 @@
-import config from 'config';
 import { authHeader } from '../_helpers';
+import { BASE_ADDRESS } from '../_constants';
 
 export const userService = {
     login,
@@ -7,14 +7,16 @@ export const userService = {
     getAll
 };
 
-function login(username, password) {
+function login(email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    console.log(`${BASE_ADDRESS}`);
+
+    return fetch(`${BASE_ADDRESS}/user/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -38,7 +40,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+    return fetch(`${BASE_ADDRESS}/user`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -48,7 +50,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                window.location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;

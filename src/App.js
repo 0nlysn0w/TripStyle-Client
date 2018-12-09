@@ -5,7 +5,6 @@ import {Route, BrowserRouter, Switch } from 'react-router-dom';
 import { FilterPage } from './components/FilterPage';
 import ShoppingCart from './components/ShoppingCart';
 import { OrderPage } from './components/OrderPage';
-import {Login} from './components/Login';
 import { Registration } from './components/Registration';
 
 export default class App extends Component {

@@ -5,6 +5,7 @@ import ProductImageSlider from './ProductImageSlider';
 import SelectSize from './SelectSize';
 import Footer from './Footer';
 import {Link} from 'react-router-dom';
+import axios from 'axios'
 
 
 export class ProductPage extends Component {
@@ -12,15 +13,19 @@ export class ProductPage extends Component {
   state = {
       product:null
   }
-//   componentDidMount(){
-//     let product: this.props.match.params.productid;
-//     fetch('https://localhost:5001/api/product/' + product);
-//     this.setState({
-//         product: product
-//     })
-//   }
+  componentDidMount(){
+    let product = this.props.match.params.productid;
+    console.log(this.props.match.params.productid)
+    axios.get('https://localhost:5001/api/product/' + product)
+        .then(res=> {
+            console.log(res.data[0].name)
+            this.setState({
+                product: res.data[0].name
+            })
+        })
+
+  }
   render() {
-    console.log(this.props)
     return ( 
       <div>
         <TopHeader />
@@ -45,7 +50,7 @@ export class ProductPage extends Component {
                         <Header size='huge' textAlign='right' color='red'> €20,- </Header>
                         <Divider hidden/>
                         <Container textAlign='center'>
-                            <Header size='huge'>Product name</Header>
+                            <Header size='huge'>{this.state.product}</Header>
                             <Divider hidden/>
                             Select size:
                             <Container fluid>

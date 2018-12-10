@@ -35,9 +35,9 @@ export default class GridExampleRelaxed extends Component {
           <Grid.Row columns={5} centered relaxed>
             {items.map(item => (
               <Grid.Column key={item.productId}>
-                <Link to= {'/product' + item.productId}>
+                <Link to= {'/' + item.productId}>
                   <Card href='#card-example-link-card' color='teal'>
-                      <Image src= {item.images[0].url} />
+                      <Image src= 'http://placekitten.com/g/200/300' />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.name}</Card.Meta>

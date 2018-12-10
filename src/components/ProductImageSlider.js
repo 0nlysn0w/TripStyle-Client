@@ -1,11 +1,22 @@
 import React, {Component} from 'react'
 import { Divider, Image, Container } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
+import GridExampleRelaxed from './Grid';
+
+
 
 const src = '/images/wireframe/image.png'
 
 
 export default class ProductImageSlider extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    }
+  }
+
   handleImage1=()=>{
     var smallImage = document.getElementById("firstImage");
     var largeImage = document.getElementById("largeImage");

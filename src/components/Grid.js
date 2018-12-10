@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Grid, Image, Card, CardContent, Icon, Divider } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import ProductImageSlider from './ProductImageSlider';
 
 export default class GridExampleRelaxed extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      images: [],
       isLoaded: false
     }
   }
@@ -24,6 +24,7 @@ export default class GridExampleRelaxed extends Component {
   }
   
   render() {
+
     var { isLoaded, items, images } = this.state;
     if (!isLoaded) {
       return <div>Loading...</div>;
@@ -33,8 +34,8 @@ export default class GridExampleRelaxed extends Component {
         <Grid>
           <Grid.Row columns={5} centered relaxed>
             {items.map(item => (
-              <Grid.Column>
-                <NavLink to='./product'>
+              <Grid.Column key={item.productId}>
+                <Link to= {'/product' + item.productId}>
                   <Card href='#card-example-link-card' color='teal'>
                       <Image src= {item.images[0].url} />
                     <CardContent>
@@ -43,7 +44,7 @@ export default class GridExampleRelaxed extends Component {
                     </CardContent>
                   </Card>
                   <Divider hidden />
-                </NavLink>
+                </Link>
               </Grid.Column>
             ))}
           </Grid.Row>

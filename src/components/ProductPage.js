@@ -4,13 +4,23 @@ import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button, I
 import ProductImageSlider from './ProductImageSlider';
 import SelectSize from './SelectSize';
 import Footer from './Footer';
+import {Link} from 'react-router-dom';
 
 
 export class ProductPage extends Component {
   displayName = ProductPage.name
-  
-
+  state = {
+      product:null
+  }
+//   componentDidMount(){
+//     let product: this.props.match.params.productid;
+//     fetch('https://localhost:5001/api/product/' + product);
+//     this.setState({
+//         product: product
+//     })
+//   }
   render() {
+    console.log(this.props)
     return ( 
       <div>
         <TopHeader />

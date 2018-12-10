@@ -20,6 +20,7 @@ export default class App extends Component {
           <Route path={'/filter'} component={FilterPage} />
           <Route path={'/order'} component={OrderPage} />
           <Route path={'/register'} component={Registration} />
+          <Route path={'/:productid'} component={ProductPage} />
         </Switch>
        </BrowserRouter>
     );

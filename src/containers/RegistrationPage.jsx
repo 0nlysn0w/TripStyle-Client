@@ -5,8 +5,7 @@ import { Button, Container, Grid, Checkbox, Form, Input, Radio, Select, TextArea
 import { NavLink } from 'react-router-dom'
 import Footer from './Footer';
 
-export class Registration extends Component {
-    displayName = Registration.name
+export class RegistrationPage extends Component {
 
     render() {
         return (

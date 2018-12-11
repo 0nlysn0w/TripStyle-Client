@@ -10,7 +10,6 @@ import Login from './Login';
 
 
 export default class TopHeader extends Component {
-    displayName = TopHeader.name
 
   render() {
     return (

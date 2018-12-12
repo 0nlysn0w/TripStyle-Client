@@ -8,7 +8,8 @@ export default class Grid2 extends Component {
     super(props);
     this.state = {
       items: [],
-      isLoaded: false
+      isLoaded: false,
+      isFiltered: false
     }
   }
 
@@ -25,35 +26,47 @@ export default class Grid2 extends Component {
 
   render() {
     console.log(this.props.products)
-    var { isLoaded, items } = this.state;
-    if (!isLoaded) {
+    if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }
 
-    if (items && items.length) {
+    if (this.props.products && this.props.products.length) {
       return (
         <Grid>
           <Grid.Row columns={4} centered relaxed>
-            {items.map(item => (
+            {this.props.products.map(item => (
               <Grid.Column>
                 <NavLink to='./product'>
                   <Card href='#card-example-link-card' color='teal'>
                     <Image src='http://placekitten.com/200/300' />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
-                      <Card.Meta>{item.name}</Card.Meta>
-                      <Card.Description>{item.color}</Card.Description>
-                      </CardContent>
+                      <Card.Meta>{item.color}
+                        <Divider hidden />
+                        {item.name}</Card.Meta>
+                      <Card.Description>{item.region}</Card.Description>
+                    </CardContent>
                   </Card>
                   <Divider hidden />
                 </NavLink>
-                </Grid.Column>
+              </Grid.Column>
             ))}
           </Grid.Row>
         </Grid>
       )
-    } else {
-      return <div>No items found</div>
+    }
+
+    // if (this.props.isFiltered({ isFiltered: true })) {
+    //   console.log()
+    // }
+
+    else {
+      return <div><Segment placeholder>
+      <Header icon>
+        <Icon name='filter' />
+        use the the filterbuttons to find specific products.
+      </Header>
+    </Segment></div>
     }
   }
 }

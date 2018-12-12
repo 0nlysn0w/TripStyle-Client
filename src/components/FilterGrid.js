@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Grid, Image, Form } from 'semantic-ui-react'
 import GenCheckbox from './GenCheckbox';
 import TypeCheckbox from './TypeCheckbox';
@@ -12,13 +12,25 @@ import Filterbutton from './Filterbutton'
 
 
 export default class FilterGrid extends Component {
-    state = { region: undefined, products: undefined }
-    ChangeRegion(region){
-        this.setState({region})
+    state = { region: undefined, products: undefined, isFiltered: undefined, category: undefined, color: undefined }
+    ChangeColor(color) {
+        this.setState({ color })
     }
 
-    ChangeProducts(products){
-        this.setState({products})
+    ChangeCategory(category) {
+        this.setState({ category })
+    }
+
+    ChangeFiler(isFiltered) {
+        this.setState({ isFiltered })
+    }
+
+    ChangeRegion(region) {
+        this.setState({ region })
+    }
+
+    ChangeProducts(products) {
+        this.setState({ products })
     }
 
     render() {
@@ -28,19 +40,25 @@ export default class FilterGrid extends Component {
                     <Form>
                         <FilterDropdown />
                         <Divider hidden />
-                        <GenCheckbox />
+                        {/* <GenCheckbox />
+                        <Divider hidden /> */}
+                        <TypeCheckbox ChangeCategory={(category) => this.ChangeCategory(category)} />
                         <Divider hidden />
-                        <TypeCheckbox />
+                        <ColorButton ChangeColor={(color) => this.ChangeColor(color)} />
                         <Divider hidden />
-                        <ColorButton />
-                        <Divider hidden />
-                        <RegionCheckbox ChangeRegion= {(region)=> this.ChangeRegion(region)} />
+                        <RegionCheckbox ChangeRegion={(region) => this.ChangeRegion(region)} />
                         <Divider section hidden />
-                        <Filterbutton region= {this.state.region} changeProducts= {(products)=> this.ChangeProducts(products)}/>
+                        <Filterbutton region={this.state.region} category={this.state.category} color={this.state.color}
+                            changeProducts={(products) => this.ChangeProducts(products)}
+                            changeFilter={(isFiltered) => this.ChangeFilter(isFiltered)} />
                     </Form>
                 </Grid.Column>
                 <Grid.Column width={13}>
-                    <Grid2 products= {this.state.products} region= {this.state.region}/> 
+                    <Grid2 products={this.state.products}
+                        region={this.state.region}
+                        isFiltered={this.state.isFiltered}
+                        category={this.state.category}
+                        color={this.state.color} />
                 </Grid.Column>
             </Grid>
         )

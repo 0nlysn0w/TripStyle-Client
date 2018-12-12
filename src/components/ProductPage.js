@@ -28,6 +28,7 @@ export class ProductPage extends Component {
                 product_color: res.data[0].color,
                 product_region: res.data[0].region,
                 product_season: res.data[0].season,
+                product_category: res.data[0].category.name,
             })
         })
 
@@ -73,13 +74,13 @@ export class ProductPage extends Component {
         </Container>
         <Divider hidden/>
         <Divider horizontal>Product information</Divider>
-        <Container>
-            Name: {this.state.product_name}
-            Fabric: {this.state.product_make}
-            Color: {this.state.product_color}
-            Region: {this.state.product_region}
-            Season: {this.state.product_season}
-            Category: {this.state.product_category}
+        <Container textAlign='center'>
+            <Container> Name: {this.state.product_name}</Container>
+            <Container>Fabric: {this.state.product_make}</Container>
+            <Container> Color: {this.state.product_color}</Container>
+            <Container> Region: {this.state.product_region}</Container>
+            <Container>Season: {this.state.product_season}</Container>
+            <Container> Category: {this.state.product_category}</Container>
         </Container>
         <Divider hidden />
         <Footer />

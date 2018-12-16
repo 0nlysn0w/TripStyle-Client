@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { Grid, Image, Card, CardContent, Icon, Divider } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import { connect} from 'react-redux';
 
-export default class GridExampleRelaxed extends Component {
+
+
+
+class GridExampleRelaxed extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +35,7 @@ export default class GridExampleRelaxed extends Component {
       });
   }
   render() {
+    console.log(this.props)
     var { isLoaded, items, images } = this.state;
     if (!isLoaded) {
       return <div>Loading...</div>;
@@ -63,3 +68,9 @@ export default class GridExampleRelaxed extends Component {
     }
   }
 }
+const mapStateToProps = (state) => {
+  return{
+      projects:state.product.products
+  }
+}
+export default connect(mapStateToProps)(GridExampleRelaxed)

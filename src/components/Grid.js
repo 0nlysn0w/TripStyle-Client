@@ -35,12 +35,12 @@ class GridExampleRelaxed extends Component {
       });
   }
   render() {
-    console.log(this.props)
     var { isLoaded, items, images } = this.state;
     if (!isLoaded) {
       return <div>Loading...</div>;
     }
     if (items && (items.length = 5)) {
+      console.log(this.props)
       return (
         <Grid>
           <Grid.Row columns={5} centered relaxed>
@@ -70,7 +70,7 @@ class GridExampleRelaxed extends Component {
 }
 const mapStateToProps = (state) => {
   return{
-      projects:state.product.products
+      products:state.product.products
   }
 }
 export default connect(mapStateToProps)(GridExampleRelaxed)

@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Button, Header, Grid, Image, Divider, Dimmer, Segment, Card, CardContent, Icon } from 'semantic-ui-react'
 import _ from 'lodash'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { createProduct } from '../store/actions/productActions'
 
-export default class Grid2 extends Component {
+ class Grid2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +23,11 @@ export default class Grid2 extends Component {
           isLoaded: true,
           items: json
         })
+        if (typeof Redux_loaded === 'undefined') {
+          window.Redux_loaded = true;
+          this.state.items.map(item =>
+            this.props.createProduct(item))
+        }
       });
   }
 
@@ -70,3 +77,14 @@ export default class Grid2 extends Component {
     }
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return{
+    createProduct:(product) => dispatch(createProduct(product))
+  }
+}
+const mapStateToProps = (state) => {
+  return{
+      products:state.product.products
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Grid2)

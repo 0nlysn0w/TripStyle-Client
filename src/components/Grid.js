@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Grid, Image, Card, CardContent, Icon, Divider } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
 import { connect} from 'react-redux';
+import { NavLink, Link } from 'react-router-dom';
+import ProductImageSlider from './ProductImageSlider';
 
 
 
@@ -11,7 +12,6 @@ class GridExampleRelaxed extends Component {
     super(props);
     this.state = {
       items: [],
-      images: [],
       isLoaded: false
     }
   }
@@ -25,16 +25,10 @@ class GridExampleRelaxed extends Component {
           items: json
         })
       });
-    fetch('https://localhost:5001/api/image')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          images: json
-        })
-      });
   }
+  
   render() {
+
     var { isLoaded, items, images } = this.state;
     if (!isLoaded) {
       return <div>Loading...</div>;
@@ -45,19 +39,17 @@ class GridExampleRelaxed extends Component {
         <Grid>
           <Grid.Row columns={5} centered relaxed>
             {items.map(item => (
-              <Grid.Column>
-                <NavLink to='./product'>
+              <Grid.Column key={item.productId}>
+                <Link to= {'/' + item.productId}>
                   <Card href='#card-example-link-card' color='teal'>
-                    {images.map(image => 
-                      <Image src= {image.url} />
-                    )}
+                      <Image src= 'http://placekitten.com/g/200/300' />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.name}</Card.Meta>
                     </CardContent>
                   </Card>
                   <Divider hidden />
-                </NavLink>
+                </Link>
               </Grid.Column>
             ))}
           </Grid.Row>

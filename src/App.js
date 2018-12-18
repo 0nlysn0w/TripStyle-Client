@@ -24,6 +24,7 @@ export default class App extends Component {
           <Route path={'/register'} component={Registration} />
           <Route path={'/admin/create'}component={CreateProduct}/>
           <Route path={'/admin/delete'}component={DeleteProduct}/>
+          <Route path={'/:productid'} component={ProductPage} />
         </Switch>
        </BrowserRouter>
     );

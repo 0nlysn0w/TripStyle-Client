@@ -18,7 +18,10 @@ class DeleteProduct extends Component {
     e.preventDefault();
     //console.log(this.state.ProductId);
     this.props.deleteProduct(this.state.ProductId)
-  }
+      return fetch('https://localhost:5001/api/product/' + this.state.ProductId, {
+        method: 'delete'
+      })
+}
   render() {
     return (
 

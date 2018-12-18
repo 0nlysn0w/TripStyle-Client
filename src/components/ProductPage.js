@@ -18,17 +18,17 @@ export class ProductPage extends Component {
     console.log(this.props.match.params.productid)
     axios.get('https://localhost:5001/api/product/' + product)
         .then(res=> {
-            // console.log(res.data[0].name)
+            console.log(res.data[0].images[0].url)
             this.setState({
                 product_name: res.data[0].name,
                 product_price: res.data[0].price,
-                product_image: res.data[0].images,
+                product_image: res.data[0].images[0].url,
                 product_size: res.data[0].size,
                 product_make: res.data[0].make,
                 product_color: res.data[0].color,
                 product_region: res.data[0].region,
                 product_season: res.data[0].season,
-                product_category: res.data[0].category.name,
+                product_category: 'Doesnt work'
             })
         })
 
@@ -42,9 +42,6 @@ export class ProductPage extends Component {
                 <GridRow>
                     <GridColumn computer='3'>
                         <Container>
-                            
-                            
-                            <ProductImageSlider />
                         </Container>
                     </GridColumn>
                     <GridColumn computer='8'>

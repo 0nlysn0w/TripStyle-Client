@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Grid, Image, Divider, Dimmer, Segment, Card, CardContent, Icon } from 'semantic-ui-react'
 import _ from 'lodash'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createProduct } from '../store/actions/productActions'
 
@@ -23,27 +23,28 @@ import { createProduct } from '../store/actions/productActions'
           isLoaded: true,
           items: json
         })
-        if (typeof Redux_loaded === 'undefined') {
-          window.Redux_loaded = true;
-          this.state.items.map(item =>
-            this.props.createProduct(item))
-        }
+        // if (typeof Redux_loaded === 'undefined') {
+        //   window.Redux_loaded = true;
+        //   this.state.items.map(item =>
+        //     this.props.createProduct(item))
+        // }
       });
   }
 
   render() {
-    console.log(this.props.products)
+    //console.log(this.props.products)
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }
 
-    if (this.props.products && this.props.products.length) {
+    if (this.state.items && this.state.items.length) {
+      console.log(this.state.items[0].images[0].url)
       return (
         <Grid>
           <Grid.Row columns={4} centered relaxed>
-            {this.props.products.map(item => (
+            {this.state.items.map(item => (
               <Grid.Column>
-                <NavLink to='./product'>
+                <Link to= {'/' + item.productId}>
                   <Card href='#card-example-link-card' color='teal'>
                     <Image src='http://placekitten.com/200/300' />
                     <CardContent>
@@ -55,7 +56,7 @@ import { createProduct } from '../store/actions/productActions'
                     </CardContent>
                   </Card>
                   <Divider hidden />
-                </NavLink>
+                </Link>
               </Grid.Column>
             ))}
           </Grid.Row>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Sidebar } from 'semantic-ui-react';
 import { MenuItem } from 'semantic-ui-react';
-import SearchExampleStandard from './SearchBar';
+import SearchBar from './SearchBar';
 import { Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import Home from './Home';
@@ -21,7 +21,7 @@ export default class TopHeader extends Component {
                 </Button>
             </MenuItem>
             <MenuItem position='right'>
-                <SearchExampleStandard></SearchExampleStandard>
+                <SearchBar />
             </MenuItem>
             <MenuItem className="Login" position='right'>
                     <Login />

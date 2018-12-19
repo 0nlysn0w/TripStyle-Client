@@ -7,6 +7,7 @@ import worldmap from './Images/worldmap.PNG';
 import GridExampleRelaxed from './Grid';
 import { Divider, Button, Sidebar, Segment, Menu, Icon, SidebarPusher } from 'semantic-ui-react';
 import Footer from './Footer'; 
+import SearchBar from './SearchBar';
 
 export default class Home extends Component {
   displayName = Home.name

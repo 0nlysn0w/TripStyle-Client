@@ -32,13 +32,57 @@ export default class Grid2 extends Component {
 
     if (this.props.products && this.props.products.length) {
       return (
+        <div>
         <Grid>
           <Grid.Row columns={4} centered relaxed>
             {this.props.products.map(item => (
               <Grid.Column>
                 <NavLink to='./product'>
                   <Card href='#card-example-link-card' color='teal'>
-                    <Image src='http://placekitten.com/200/300' />
+                    <Image src=
+                    //'https://i.imgur.com/nEMZUNw.gif'
+                    'https://i.imgur.com/Bbn2V1A.jpg' 
+                    />
+                    <CardContent>
+                      <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
+                      <Card.Meta>{item.color}
+                        <Divider hidden />
+                        {item.name}</Card.Meta>
+                      <Card.Description>{item.region}</Card.Description>
+                    </CardContent>
+                  </Card>
+                  <Divider hidden />
+                </NavLink>
+              </Grid.Column>
+            ))}
+          </Grid.Row>
+        </Grid>
+        </div>
+      )
+    }
+
+    // if (this.props.isFiltered({ isFiltered: true })) {
+    //   console.log()
+    // }
+
+    else {
+      return <div><Segment placeholder>
+      <Header icon>
+        <Icon name='filter' />
+        use the the filterbuttons to find specific products.
+      </Header>
+    </Segment>
+    <Divider hidden/>
+        <Grid>
+          <Grid.Row columns={4} centered relaxed>
+            {this.state.items.map(item => (
+              <Grid.Column>
+                <NavLink to='./product'>
+                  <Card href='#card-example-link-card' color='teal'>
+                    <Image src= 
+                    //'https://i.imgur.com/nEMZUNw.gif'
+                    'https://i.imgur.com/Bbn2V1A.jpg' 
+                    />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.color}
@@ -55,18 +99,7 @@ export default class Grid2 extends Component {
         </Grid>
       )
     }
-
-    // if (this.props.isFiltered({ isFiltered: true })) {
-    //   console.log()
-    // }
-
-    else {
-      return <div><Segment placeholder>
-      <Header icon>
-        <Icon name='filter' />
-        use the the filterbuttons to find specific products.
-      </Header>
-    </Segment></div>
+    </div>
     }
   }
 }

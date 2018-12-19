@@ -42,8 +42,8 @@ export default class FilterGrid extends Component {
                         <Divider hidden />
                         {/* <GenCheckbox />
                         <Divider hidden /> */}
-                        <TypeCheckbox ChangeCategory={(category) => this.ChangeCategory(category)} />
-                        <Divider hidden />
+                        {/* <TypeCheckbox ChangeCategory={(category) => this.ChangeCategory(category)} />
+                        <Divider hidden /> */}
                         <ColorButton ChangeColor={(color) => this.ChangeColor(color)} />
                         <Divider hidden />
                         <RegionCheckbox ChangeRegion={(region) => this.ChangeRegion(region)} />

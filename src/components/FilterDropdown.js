@@ -1,15 +1,30 @@
-import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
-import { items, item } from './Grid2'
+import React, { Component } from 'react'
+import { Dropdown, FormField } from 'semantic-ui-react'
 
-const options = [
-  { key: 1, text: 'Featured', value: 1 },
-  { key: 2, text: 'Lowest price', value: 2 },
-  { key: 3, text: 'Highest price', value: 3 },
-]
+export default class Filterbutton extends Component {
+  constructor() {
+    super()
+  }
 
-const DropdownExampleUncontrolled = () => (
-  <Dropdown selection options={options} placeholder='Sort by...' />
-)
+  render() {
+    return (
+      <form>
+        <formfield>
+        <Dropdown
+          fluid
+          placeholder='Sort by...'
+          openOnFocus={false}
+          selection
+          options={[
+            { key: 1, text: 'Featured', value: 1 },
+            { key: 2, text: 'Lowest price', value: 2 },
+            { key: 3, text: 'Highest price', value: 3 },
+          ]}
+        />
+      </formfield>
+      </form>
+      
+    )
+  }
 
-export default DropdownExampleUncontrolled
+}

@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import TopHeader from './Header';
 import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button, Icon } from 'semantic-ui-react';
-import ProductImageSlider from './ProductImageSlider';
-import SelectSize from './SelectSize';
 import Footer from './Footer';
-import {Link} from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import { addProduct } from '../store/actions/ShoppingcartAction'
+import { connect } from 'react-redux'
 
-
-export class ProductPage extends Component {
+class ProductPage extends Component {
   displayName = ProductPage.name
   state = {
-      product:null
   }
+  handleChange = () => {
+    //console.log(this.state)
+    this.props.addProduct(this.state)
+    console.log(this.props)
+    }
   componentDidMount(){
     let product = this.props.match.params.productid;
     console.log(this.props.match.params.productid)
     axios.get('https://localhost:5001/api/product/' + product)
         .then(res=> {
-            console.log(res.data[0].images[0].url)
+            console.log(res.data[0])
             this.setState({
+                product_ProductId: res.data[0].productId,
                 product_name: res.data[0].name,
                 product_price: res.data[0].price,
                 product_image: res.data[0].images[0].url,
@@ -28,10 +31,10 @@ export class ProductPage extends Component {
                 product_color: res.data[0].color,
                 product_region: res.data[0].region,
                 product_season: res.data[0].season,
+                product_stock: res.data[0].stock,
                 product_category: 'Doesnt work'
             })
         })
-
   }
   render() {
     return ( 
@@ -62,7 +65,7 @@ export class ProductPage extends Component {
                                 <Header size='huge'> {this.state.product_size} </Header>
                             </Container>
                             <Divider hidden />
-                            <Button color='green' size='massive' icon='shopping cart' fluid> 
+                            <Button onClick={this.handleChange} color='green' size='massive' icon='shopping cart' fluid> 
                             </Button>
                         </Container>
                     </GridColumn>
@@ -85,5 +88,14 @@ export class ProductPage extends Component {
     );
   }
 }
-       
-
+const mapDispatchToProps = (dispatch) => {
+    return{
+      addProduct:(product) => dispatch(addProduct(product))
+    }
+  }
+  const mapStateToProps = (state) => {
+    return{
+        products:state.ItemCart.products
+    }
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(ProductPage)

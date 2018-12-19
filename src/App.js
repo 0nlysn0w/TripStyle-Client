@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Home from './components/Home';
-import { ProductPage } from './components/ProductPage';
+import ProductPage from './components/ProductPage';
 import {Route, BrowserRouter, Switch } from 'react-router-dom';
 import { FilterPage } from './components/FilterPage';
 import ShoppingCart from './components/ShoppingCart';
@@ -9,6 +9,7 @@ import {Login} from './components/Login';
 import { Registration } from './components/Registration';
 import CreateProduct from './components/ChangeData/CreateProduct';
 import DeleteProduct from './components/ChangeData/DeleteProduct';
+import RegUserPage from './components/User/RegUserPage';
 
 export default class App extends Component {
   displayName = App.name
@@ -24,7 +25,8 @@ export default class App extends Component {
           <Route path={'/register'} component={Registration} />
           <Route path={'/admin/create'}component={CreateProduct}/>
           <Route path={'/admin/delete'}component={DeleteProduct}/>
-          <Route path={'/:productid'} component={ProductPage} />
+          <Route exact path={'/:productid'} component={ProductPage} />
+          <Route path={'/user/:userid'} component={RegUserPage}/>
         </Switch>
        </BrowserRouter>
     );

@@ -32,7 +32,7 @@ import { createProduct } from '../store/actions/productActions'
   }
 
   render() {
-    //console.log(this.props.products)
+    //console.log(this.props)
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, Popup, Divider } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom'
+import { NavLink , Link} from 'react-router-dom'
 
 export default class Login extends React.Component {
 
@@ -17,7 +17,7 @@ export default class Login extends React.Component {
             <label>Password</label>
             <input placeholder='Password' required />
           </Form.Field>
-          <Button positive fluid>Login</Button>
+          <Link to={'/user/1'}><Button positive fluid>Login</Button></Link>
           <Divider fitted />
           <NavLink to='/register'>Don't have an account yet? register here.</NavLink>
         </Form>}

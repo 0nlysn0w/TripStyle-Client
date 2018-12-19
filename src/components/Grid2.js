@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Button, Header, Grid, Image, Divider, Dimmer, Segment, Card, CardContent, Icon } from 'semantic-ui-react'
 import _ from 'lodash'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { createProduct } from '../store/actions/productActions'
 
-export default class Grid2 extends Component {
+ class Grid2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,23 +23,29 @@ export default class Grid2 extends Component {
           isLoaded: true,
           items: json
         })
+        // if (typeof Redux_loaded === 'undefined') {
+        //   window.Redux_loaded = true;
+        //   this.state.items.map(item =>
+        //     this.props.createProduct(item))
+        // }
       });
   }
 
   render() {
-    console.log(this.props.products)
+    //console.log(this.props)
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }
 
-    if (this.props.products && this.props.products.length) {
+    if (this.state.items && this.state.items.length) {
+      console.log(this.state.items[0].images[0].url)
       return (
         <div>
         <Grid>
           <Grid.Row columns={4} centered relaxed>
-            {this.props.products.map(item => (
+            {this.state.items.map(item => (
               <Grid.Column>
-                <NavLink to='./product'>
+                <Link to= {'/' + item.productId}>
                   <Card href='#card-example-link-card' color='teal'>
                     <Image src=
                     //'https://i.imgur.com/nEMZUNw.gif'
@@ -52,7 +60,7 @@ export default class Grid2 extends Component {
                     </CardContent>
                   </Card>
                   <Divider hidden />
-                </NavLink>
+                </Link>
               </Grid.Column>
             ))}
           </Grid.Row>
@@ -103,3 +111,14 @@ export default class Grid2 extends Component {
     }
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return{
+    createProduct:(product) => dispatch(createProduct(product))
+  }
+}
+const mapStateToProps = (state) => {
+  return{
+      products:state.product.products
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Grid2)

@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
 import { Sidebar, Menu, Icon, Divider, Button, Container, Header, Segment, Image, Grid, SegmentGroup, Input } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux'
 
-export default class ShoppingCart extends Component {
+class ShoppingCart extends Component {
     displayName = ShoppingCart.name
 
-    state = { visible: false }
+    state = { 
+    visible: false,
+    products: [    ]
+  
+  }
 
     handleHideClick = () => this.setState({ visible: false })
-    handleShowClick = () => this.setState({ visible: true })
+    handleShowClick = () => this.setState({ visible: true, products: this.props.products }); 
     handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
     const { visible } = this.state
+    console.log(this.props.products)
     return (
         <div>
             <Sidebar
@@ -35,96 +41,24 @@ export default class ShoppingCart extends Component {
             
             <Divider />
             <Container textAlign='center'>
-
-              <Segment inverted color='grey'>
-                <Header as='h3' floated='left'>Product A</Header>
-                <Header as='h2'floated='right'> €20,-</Header>
+            {this.state.products.map(item => (
+               <Segment inverted color='grey'>
+                <Header as='h3' floated='left'>{item.product_name}</Header>
+                <Header as='h2'floated='right'> €{item.product_price},-</Header>
               <Menu.Item>
                 <Grid.Column>
-                <Image as={Container} src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='medium'/>
+                <Image as={Container} src={item.product_image} size='medium'/>
                 </Grid.Column>
               </Menu.Item>
               </Segment>
+              ))}
+              <Divider /> 
 
-              <Divider />
-
-              <Segment inverted color='grey'>
-                <Header as='h3' floated='left'>Product B</Header>
-                <Header as='h2'floated='right'> €20,-</Header>
-              <Menu.Item>
-                <Grid.Column>
-                <Image as={Container} src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='medium'/>
-                </Grid.Column>
-              </Menu.Item>
-              </Segment>
-
-              <Divider />
-
-              <Segment inverted color='grey'>
-                <Header as='h3' floated='left'>Product C</Header>
-                <Header as='h2'floated='right'> €20,-</Header>
-              <Menu.Item>
-                <Grid.Column>
-                <Image as={Container} src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='medium'/>
-                </Grid.Column>
-              </Menu.Item>
-              </Segment>
-
-              <Divider />
-
-              <Segment inverted color='grey'>
-                <Header as='h3' floated='left'>Product D</Header>
-                <Header as='h2'floated='right'> €20,-</Header>
-              <Menu.Item>
-                <Grid.Column>
-                <Image as={Container} src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='medium'/>
-                </Grid.Column>
-              </Menu.Item>
-              </Segment>
-
-              <Divider />
-
-              <Segment inverted color='grey'>
-                <Header as='h3' floated='left'>Product E</Header>
-                <Header as='h2'floated='right'> €20,-</Header>
-              <Menu.Item>
-                <Grid.Column>
-                <Image as={Container} src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='medium'/>
-                </Grid.Column>
-              </Menu.Item>
-              </Segment>
-
-              <Divider />
-
-              <Segment inverted color='grey'>
-                <Header as='h3' floated='left'>Product F</Header>
-                <Header as='h2'floated='right'> €20,-</Header>
-              <Menu.Item>
-                <Grid.Column>
-                <Image as={Container} src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='medium'/>
-                </Grid.Column>
-              </Menu.Item>
-              </Segment>
-
-              <Divider />
-
-              <Segment inverted color='grey'>
-                <Header as='h3' floated='left'>Product G</Header>
-                <Header as='h2'floated='right'> €20,-</Header>
-              <Menu.Item>
-                <Grid.Column>
-                <Image as={Container} src={'https://react.semantic-ui.com/images/wireframe/image.png'} size='medium'/>
-                </Grid.Column>
-              </Menu.Item>
-              </Segment>
-
-              <Divider />
-            
             </Container>
             <Divider />
           </Sidebar>
 
-              <Button circular size='huge' icon='shopping cart' color='green' onClick={this.handleShowClick}>
+              <Button circular size='huge' icon='shopping cart' color='red' onClick={this.handleShowClick}>
               </Button>
 
 
@@ -133,3 +67,9 @@ export default class ShoppingCart extends Component {
     }
   }
 
+  const mapStateToProps = (state) => {
+    return{
+        products:state.ItemCart.products
+    }
+  }
+  export default connect(mapStateToProps)(ShoppingCart)

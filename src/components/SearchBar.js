@@ -1,67 +1,100 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Search, Grid } from 'semantic-ui-react'
+import { Search, Grid, Label } from 'semantic-ui-react'
+import { Redirect } from "react-router-dom";
 
-const source = _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
 
-export default class SearchExampleStandard extends Component {
+export default class SearchBar extends Component {
   componentWillMount() {
-    this.resetComponent()
+    this.resetComponent();
+    fetch('https://localhost:5001/api/Product', {
+      method: "get",
+      headers: { "content-type": "application/json" }
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          ...this.state,
+          source: data
+        });
+      });
   }
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+  resultRenderer = ({ title }) => <Label>{title}</Label>;
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+  resetComponent = () =>
+    this.setState({
+      ...this.setState,
+      isLoading: false,
+      results: [],
+      value: {},
+      redirect: false
+    });
 
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value })
+  handleResultSelect = (e, { result }) => {
+    this.setState({
+      ...this.state,
+      value: { title: result.title, id: result.id },
+      redirect: true
+    });
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
+      return this.resetComponent();
+    }, 200);
+  };
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
+  handleSearchChange = (e, { value }) => {
+    this.setState({ ...this.state, isLoading: true, value });
+    setTimeout(() => {
+      if (this.state.value.title < 1) return this.resetComponent();
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), "i");
+      const isMatch = result => re.test(result.title);
 
       this.setState({
+        ...this.state,
         isLoading: false,
-        results: _.filter(source, isMatch),
-      })
-    }, 300)
-  }
+        results: _.filter(this.state.source, isMatch)
+      });
+    }, 300);
+  };
 
   render() {
-    const { isLoading, value, results } = this.state
-
+    const { isLoading, value, results, redirect } = this.state;
+    const path = "/Home/" + value.id;
     return (
-      <Grid>
-          <Search
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-            results={results}
-            value={value}
-            {...this.props}
-            size='tiny'
-          />
-        
-        {/* Hiermee kan je zien wat er opgenomen wordt in de state van de zoekbalk. */}
-
-        {/* <Grid.Column width={10}>
+      <div>
+        <Grid>
+          {redirect ? <Redirect to={path} /> : ""}
+          <Grid.Column width={6}>
+            <Search
+              loading={isLoading}
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                leading: true
+              })}
+              results={results}
+              value={value.title}
+              noResultsMessage="Geen resultaat gevonden"
+              resultRenderer={this.resultRenderer}
+              {...this.props}
+            />
+          </Grid.Column>
+          {/* <Grid.Column width={10}>
           <Segment>
             <Header>State</Header>
-            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(this.state, null, 2)}</pre>
+            <pre style={{ overflowX: "auto" }}>
+              {JSON.stringify(this.state, null, 2)}
+            </pre>
             <Header>Options</Header>
-            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(source, null, 2)}</pre>
+            <pre style={{ overflowX: "auto" }}>
+              {JSON.stringify(source, null, 2)}
+            </pre>
           </Segment>
         </Grid.Column> */}
-      </Grid>
-    )
+        </Grid>
+      </div>
+    );
   }
 }
-

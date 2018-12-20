@@ -24,7 +24,7 @@ export default class Filterbutton extends Component {
             // }
             // https://localhost:5001/api/product/mark/male/Type/Red/Afrika
             try {
-                const url = 'https://localhost:5001/api/product?region=' + this.props.region
+                const url = 'https://localhost:5001/api/product/filter?region=' + this.props.region
                  + '&color=' + this.props.color
                 //  +'&category=' + this.props.category 
                  ;

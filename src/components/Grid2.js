@@ -37,13 +37,13 @@ import { createProduct } from '../store/actions/productActions'
       return <div>Loading...</div>;
     }
 
-    if (this.state.items && this.state.items.length) {
-      console.log(this.state.items[0].images[0].url)
+    if (this.props.products && this.props.products.length) {
+      // console.log(this.state.items[0].images[0].url)
       return (
         <div>
         <Grid>
           <Grid.Row columns={4} centered relaxed>
-            {this.state.items.map(item => (
+            {this.props.products.map(item => (
               <Grid.Column>
                 <Link to= {'/' + item.productId}>
                   <Card href='#card-example-link-card' color='teal'>
@@ -116,9 +116,5 @@ const mapDispatchToProps = (dispatch) => {
     createProduct:(product) => dispatch(createProduct(product))
   }
 }
-const mapStateToProps = (state) => {
-  return{
-      products:state.product.products
-  }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Grid2)
+
+export default connect(null,mapDispatchToProps)(Grid2)

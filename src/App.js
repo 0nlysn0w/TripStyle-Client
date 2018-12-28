@@ -10,6 +10,7 @@ import { Registration } from './components/Registration';
 import CreateProduct from './components/ChangeData/CreateProduct';
 import DeleteProduct from './components/ChangeData/DeleteProduct';
 import RegUserPage from './components/User/RegUserPage';
+import AdminHeader from './components/User/AdminHeader';
 
 export default class App extends Component {
   displayName = App.name
@@ -26,7 +27,8 @@ export default class App extends Component {
           <Route path={'/admin/create'}component={CreateProduct}/>
           <Route path={'/admin/delete'}component={DeleteProduct}/>
           <Route exact path={'/:productid'} component={ProductPage} />
-          <Route path={'/user/:userid'} component={RegUserPage}/>
+          <Route exact path={'/user/:userid'} component={RegUserPage}/>
+          <Route path={'/admin/admin'} component={AdminHeader}/>
         </Switch>
        </BrowserRouter>
     );

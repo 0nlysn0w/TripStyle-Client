@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createProduct } from '../../store/actions/productActions'
-import TopHeader from '../Header';
+import TopHeader from '../User/AdminTopHeader';
 import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import Footer from '../Footer';
 
+ 
 class CreateProduct extends Component {
   state = {
     ProductId: '',
@@ -48,7 +50,9 @@ class CreateProduct extends Component {
   }
   render() {
     return (
-
+      <div>
+      <TopHeader />
+      <Container>
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
           <h5 className="grey-text text-darken-3">Create new Product</h5>
@@ -96,6 +100,9 @@ class CreateProduct extends Component {
             <p>Home</p>
         </Button>
       </div>
+      </Container>
+      <Footer />
+  </div>
       
     )
   }

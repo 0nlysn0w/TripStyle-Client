@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { deleteProduct } from '../../store/actions/productActions'
 import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import Footer from '../Footer';
+import TopHeader from '../User/AdminTopHeader';
 
 class DeleteProduct extends Component {
   state = {
@@ -24,7 +26,9 @@ class DeleteProduct extends Component {
 }
   render() {
     return (
-
+      <div>
+      <TopHeader />
+      <Container>
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
           <h5 className="grey-text text-darken-3">Create new Product</h5>
@@ -40,7 +44,9 @@ class DeleteProduct extends Component {
             <p>Home</p>
         </Button>
       </div>
-      
+      </Container>
+      <Footer />
+  </div>
     )
   }
 }

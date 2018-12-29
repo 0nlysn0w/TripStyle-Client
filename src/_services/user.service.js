@@ -14,6 +14,7 @@ function login(email, password) {
         body: JSON.stringify({ email, password })
     };
 
+
     console.log(`${BASE_ADDRESS}`);
 
     return fetch(`${BASE_ADDRESS}/user/authenticate`, requestOptions)

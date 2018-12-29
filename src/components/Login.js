@@ -13,8 +13,8 @@ export default class LoginPage extends React.Component {
     //this.props.dispatch(userActions.logout());
 
     this.state = {
-      email: 'manley@denesik.info',
-      password: '40311',
+      email: 'maximillia@flatley.info',
+      password: '77279',
       submitted: false
     };
 
@@ -34,8 +34,13 @@ export default class LoginPage extends React.Component {
     this.setState({ submitted: true });
     const { email, password } = this.state;
     const { dispatch } = this.props;
+
+    console.log(this.props);
+
     if (email && password) {
-      dispatch(userActions.login(email, password));
+      //dispatch(userActions.login(email, password));
+      // this.props.userActions.login(email, password);
+      userActions.login(email, password);
     }
   }
 
@@ -60,10 +65,19 @@ export default class LoginPage extends React.Component {
               <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
           }
 
+          {/* <Link to={'/user/1'}><Button positive fluid>Login</Button></Link> */}
+
+
           <Divider fitted />
           <NavLink to='/register'>Don't have an account yet? register here.</NavLink>
         </Form>}
       </Popup>)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    userActions:(email, password) => dispatch(userActions.login(email, password))
   }
 }
 
@@ -74,5 +88,5 @@ function mapStateToProps(state) {
   };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
+const connectedLoginPage = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 export { connectedLoginPage as LoginPage }; 

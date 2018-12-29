@@ -13,6 +13,8 @@ function login(email, password) {
     return dispatch => {
         dispatch(request({ email }));
 
+        console.log('HIJ DOET HET !!!!!!!11!!!');
+
         userService.login(email, password)
             .then(
                 user => { 

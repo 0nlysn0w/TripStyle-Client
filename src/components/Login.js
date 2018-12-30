@@ -30,11 +30,6 @@ export default class LoginPage extends React.Component {
     })
     console.log(this.state)
   }
-  // handleChange(e) {
-  //   const { name, value } = e.target;
-  //   this.setState({ [name]: value });
-  //   console.log(this.state)
-  // }
 
   handleSubmit(e) {
     console.log(this.state)
@@ -96,12 +91,6 @@ export default class LoginPage extends React.Component {
       return data;
     });
   }
-
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
-  }
-
 
   render() {
     const { loggingIn } = this.props;

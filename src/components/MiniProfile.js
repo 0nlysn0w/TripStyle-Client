@@ -25,7 +25,7 @@ export default class MiniProfile extends React.Component {
         <Button content={data.userId} color='green' circular />} on='click'>
 
         <Card>
-          <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
+          {/* <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' /> */}
           <Card.Content>
             <Card.Header>{data.firstname + "\u00a0" + data.lastname}</Card.Header>
             <Card.Meta>
@@ -33,7 +33,7 @@ export default class MiniProfile extends React.Component {
             </Card.Meta>
           </Card.Content>
           <Card.Content extra>
-            <NavLink onClick={this.logout()}>Logout</NavLink> | <NavLink to='#fullprofile'>View profile</NavLink>
+            <NavLink onClick={this.logout()} to="/">Logout</NavLink> | <NavLink to='#fullprofile'>View profile</NavLink>
           </Card.Content>
         </Card>
 

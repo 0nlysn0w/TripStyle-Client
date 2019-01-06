@@ -7,6 +7,9 @@ import ShoppingCart from './components/ShoppingCart';
 import { OrderPage } from './components/OrderPage';
 import {Login} from './components/Login';
 import { Registration } from './components/Registration';
+import { Statistics } from "./components/Pages/Statistics";
+
+
 
 export default class App extends Component {
   displayName = App.name
@@ -20,6 +23,9 @@ export default class App extends Component {
           <Route path={'/filter'} component={FilterPage} />
           <Route path={'/order'} component={OrderPage} />
           <Route path={'/register'} component={Registration} />
+          <Route path="/statistics" component={Statistics} />
+          
+          
         </Switch>
        </BrowserRouter>
     );

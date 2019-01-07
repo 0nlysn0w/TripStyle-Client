@@ -16,7 +16,7 @@ export class OrderPage extends Component {
 
     state = {
         step: 1,
-        shipping: 'Deliver at',
+        shipping: 'Will be delivered at your home',
         firstName: '',
         lastName: '',
         email: '',
@@ -56,8 +56,8 @@ export class OrderPage extends Component {
          
 
         const {step} = this.state;
-        const { street, houseNumber, postalCode ,shipping, firstName, lastName, email, age, city, country } = this.state;
-        const values = { street, houseNumber, postalCode, shipping, firstName, lastName, email, age, city, country };
+        const { street, houseNumber, postalCode ,shipping, firstName, lastName, email, age, city, country, bank,  } = this.state;
+        const values = { street, houseNumber, postalCode, shipping, firstName, lastName, email, age, city, country, bank,  };
         switch(step) {
         case 1:
             return <OrderUserDetails 

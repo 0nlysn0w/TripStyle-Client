@@ -16,7 +16,7 @@ class OrderConfirmation extends Component {
     }
 
     render() {
-        const { values: { shipping, firstName, lastName, email, age, city, country } } = this.props;
+        const { values: { street, houseNumber, postalCode, shipping, firstName, lastName, email, city, country, bank } } = this.props;
 
         return (
             <div>
@@ -69,14 +69,14 @@ class OrderConfirmation extends Component {
                                     <List.Item>
                                         <List.Icon name='users' />
                                         <List.Content>
-                                            <List.Header as='a'>First Name:</List.Header>
+                                            <List.Header as='a'>First Name</List.Header>
                                             <List.Description>{firstName}</List.Description>
                                         </List.Content>
                                     </List.Item>
                                     <List.Item>
                                         <List.Icon name='users' />
                                         <List.Content>
-                                            <List.Header as='a'>Last Name:</List.Header>
+                                            <List.Header as='a'>Last Name</List.Header>
                                             <List.Description>{lastName}</List.Description>
                                         </List.Content>
                                     </List.Item>
@@ -88,17 +88,54 @@ class OrderConfirmation extends Component {
                                         </List.Content>
                                     </List.Item>
                                     <List.Item>
-                                        <List.Icon name='calendar' />
-                                        <List.Content>
-                                            <List.Header as='a'>Age</List.Header>
-                                            <List.Description>{age} Years</List.Description>
-                                        </List.Content>
-                                    </List.Item>
-                                    <List.Item>
                                         <List.Icon name='marker' />
                                         <List.Content>
                                             <List.Header as='a'>Location</List.Header>
-                                            <List.Description>{city}, {country}</List.Description>
+                                            {/* <List.Description>{city}, {country}</List.Description> */}
+                                            <List.List>
+                                                <List.Item>
+                                                    <List.Icon name='street view' />
+                                                    <List.Content>
+                                                        <List.Header as='a'>Street</List.Header>
+                                                        <List.Description>{street}</List.Description>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Icon name='home' />
+                                                    <List.Content>
+                                                        <List.Header as='a'>House number</List.Header>
+                                                        <List.Description>{houseNumber}</List.Description>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Icon name='mail square' />
+                                                    <List.Content>
+                                                        <List.Header as='a'>Postal code</List.Header>
+                                                        <List.Description>{postalCode}</List.Description>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Icon name='building' />
+                                                    <List.Content>
+                                                        <List.Header as='a'>City</List.Header>
+                                                        <List.Description>{city}</List.Description>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Icon name='map' />
+                                                    <List.Content>
+                                                        <List.Header as='a'>Country</List.Header>
+                                                        <List.Description>{country}</List.Description>
+                                                    </List.Content>
+                                                </List.Item>
+                                            </List.List>
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Icon name='money' />
+                                        <List.Content>
+                                            <List.Header as='a'>Bank</List.Header>
+                                            <List.Description>{bank}</List.Description>
                                         </List.Content>
                                     </List.Item>
                                 </List>

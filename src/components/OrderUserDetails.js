@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Step, Icon, Form, Button, Grid, Divider, Container } from 'semantic-ui-react';
+import { Radio, Segment, Step, Icon, Form, Button, Grid, Divider, Container, Checkbox } from 'semantic-ui-react';
 import TopHeader from './Header';
 import Footer from './Footer';
 // import { OrderSteps } from './OrderSteps';
@@ -31,7 +31,7 @@ class OrderUserDetails extends Component {
                                             </Step.Content>
                                         </Step>
 
-                                        <Step>
+                                        <Step disabled>
                                             <Icon name='payment' />
                                             <Step.Content>
                                                 <Step.Title>Billing</Step.Title>
@@ -39,7 +39,7 @@ class OrderUserDetails extends Component {
                                             </Step.Content>
                                         </Step>
 
-                                        <Step>
+                                        <Step disabled>
                                             <Icon name='info' />
                                             <Step.Content>
                                                 <Step.Title>Confirm Order</Step.Title>
@@ -50,37 +50,75 @@ class OrderUserDetails extends Component {
                                 </Container>
                                 <Container />
                             </div>
+                            <h1 className="ui centered">Delivery or drop off</h1>
+                            <Segment>
+                                <Form color='green' >
+                                    <Container>
+
+                                        <Form>
+                                            <Form.Field>
+                                                {/* Selected value: <b>{this.state.value}</b> */}
+                                            </Form.Field>
+                                            <Form.Field>
+                                                <Checkbox
+                                                    radio
+                                                    label='Deliver at customer address.'
+                                                    name='shippingOption'
+                                                    value='Deliver at'
+                                                    checked={values.shipping === 'Deliver at'}
+                                                    onChange={this.props.handleCheckboxChange}
+                                                // defaultValue={values.shipping}
+                                                />
+                                            </Form.Field>
+                                            <Form.Field>
+                                                <Checkbox
+                                                    radio
+                                                    label='Pick up on a delivery address'
+                                                    name='shippingOption'
+                                                    value='Pick up at'
+                                                    checked={values.shipping === 'Pick up at'}
+                                                    onChange={this.props.handleCheckboxChange}
+                                                // defaultValue={values.shipping}
+                                                />
+                                            </Form.Field>
+                                        </Form>
+                                    </Container>
+                                </Form>
+                            </Segment>
+                            <Divider hidden />
                             <h1 className="ui centered">Enter User Details</h1>
-                            <Form color='green' >
-                                <Container>
-                                    <Form.Field>
-                                        <label>First Name</label>
-                                        <input
-                                            placeholder='First Name'
-                                            onChange={this.props.handleChange('firstName')}
-                                            defaultValue={values.firstName}
-                                        />
-                                    </Form.Field>
-                                    <Form.Field>
-                                        <label>Last Name</label>
-                                        <input
-                                            placeholder='Last Name'
-                                            onChange={this.props.handleChange('lastName')}
-                                            defaultValue={values.lastName}
-                                        />
-                                    </Form.Field>
-                                    <Form.Field>
-                                        <label>Email Address</label>
-                                        <input
-                                            type='email'
-                                            placeholder='Email Address'
-                                            onChange={this.props.handleChange('email')}
-                                            defaultValue={values.email}
-                                        />
-                                    </Form.Field>
-                                    <Button onClick={this.saveAndContinue}>Save And Continue </Button>
-                                </Container>
-                            </Form>
+                            <Segment>
+                                <Form color='green' >
+                                    <Container>
+                                        <Form.Field>
+                                            <label>First Name</label>
+                                            <input
+                                                placeholder='First Name'
+                                                onChange={this.props.handleChange('firstName')}
+                                                defaultValue={values.firstName}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>Last Name</label>
+                                            <input
+                                                placeholder='Last Name'
+                                                onChange={this.props.handleChange('lastName')}
+                                                defaultValue={values.lastName}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>Email Address</label>
+                                            <input
+                                                type='email'
+                                                placeholder='Email Address'
+                                                onChange={this.props.handleChange('email')}
+                                                defaultValue={values.email}
+                                            />
+                                        </Form.Field>
+                                        <Button onClick={this.saveAndContinue}>Save And Continue </Button>
+                                    </Container>
+                                </Form>
+                            </Segment>
                         </Container>
                     </Grid.Column>
                 </Grid>

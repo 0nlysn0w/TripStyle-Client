@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Step, Icon, Button, List, Grid, Divider, Container } from 'semantic-ui-react';
+import { Segment, Step, Icon, Button, List, Grid, Divider, Container } from 'semantic-ui-react';
 import TopHeader from './Header';
 import Footer from './Footer';
 // import { OrderSteps } from './OrderSteps';
@@ -16,7 +16,7 @@ class OrderConfirmation extends Component {
     }
 
     render() {
-        const { values: { firstName, lastName, email, age, city, country } } = this.props;
+        const { values: { shipping, firstName, lastName, email, age, city, country } } = this.props;
 
         return (
             <div>
@@ -28,7 +28,7 @@ class OrderConfirmation extends Component {
                             <div>
                                 <Container textAlign='center'>
                                     <Step.Group>
-                                        <Step>
+                                        <Step disabled>
                                             <Icon name='truck' />
                                             <Step.Content>
                                                 <Step.Title>Shipping</Step.Title>
@@ -36,7 +36,7 @@ class OrderConfirmation extends Component {
                                             </Step.Content>
                                         </Step>
 
-                                        <Step>
+                                        <Step disabled>
                                             <Icon name='payment' />
                                             <Step.Content>
                                                 <Step.Title>Billing</Step.Title>
@@ -57,43 +57,52 @@ class OrderConfirmation extends Component {
                             </div>
                             <h1 className="ui centered">Confirm your Details</h1>
                             <p>Click Confirm if the following details have been correctly entered</p>
-                            <List divided relaxed>
-                                <List.Item>
-                                    <List.Icon name='users' />
-                                    <List.Content>
-                                        <List.Header as='a'>First Name:</List.Header>
-                                        <List.Description>{firstName}</List.Description>
-                                    </List.Content>
-                                </List.Item>
-                                <List.Item>
-                                    <List.Icon name='users' />
-                                    <List.Content>
-                                        <List.Header as='a'>Last Name:</List.Header>
-                                        <List.Description>{lastName}</List.Description>
-                                    </List.Content>
-                                </List.Item>
-                                <List.Item>
-                                    <List.Icon name='mail' />
-                                    <List.Content>
-                                        <List.Header as='a'>E-mail</List.Header>
-                                        <List.Description>{email}</List.Description>
-                                    </List.Content>
-                                </List.Item>
-                                <List.Item>
-                                    <List.Icon name='calendar' />
-                                    <List.Content>
-                                        <List.Header as='a'>Location</List.Header>
-                                        <List.Description>{age} Years</List.Description>
-                                    </List.Content>
-                                </List.Item>
-                                <List.Item>
-                                    <List.Icon name='marker' />
-                                    <List.Content>
-                                        <List.Header as='a'>Location</List.Header>
-                                        <List.Description>{city}, {country}</List.Description>
-                                    </List.Content>
-                                </List.Item>
-                            </List>
+                            <Segment>
+                                <List divided relaxed>
+                                    <List.Item>
+                                        <List.Icon name='truck' />
+                                        <List.Content>
+                                            <List.Header as='a'>Shipping:</List.Header>
+                                            <List.Description>{shipping}</List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Icon name='users' />
+                                        <List.Content>
+                                            <List.Header as='a'>First Name:</List.Header>
+                                            <List.Description>{firstName}</List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Icon name='users' />
+                                        <List.Content>
+                                            <List.Header as='a'>Last Name:</List.Header>
+                                            <List.Description>{lastName}</List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Icon name='mail' />
+                                        <List.Content>
+                                            <List.Header as='a'>E-mail</List.Header>
+                                            <List.Description>{email}</List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Icon name='calendar' />
+                                        <List.Content>
+                                            <List.Header as='a'>Location</List.Header>
+                                            <List.Description>{age} Years</List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Icon name='marker' />
+                                        <List.Content>
+                                            <List.Header as='a'>Location</List.Header>
+                                            <List.Description>{city}, {country}</List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                </List>
+                            </Segment>
                             <Button onClick={this.back}>Back</Button>
                             <Button onClick={this.saveAndContinue}>Confirm</Button>
                         </Container>

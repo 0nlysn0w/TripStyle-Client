@@ -16,6 +16,7 @@ export class OrderPage extends Component {
 
     state = {
         step: 1,
+        shipping: 'Deliver at',
         firstName: '',
         lastName: '',
         email: '',
@@ -40,19 +41,26 @@ export class OrderPage extends Component {
 
     handleChange = input => event => {
         this.setState({ [input] : event.target.value })
+        console.log(event.target)
+    }
+
+    handleCheckboxChange = (e, {value}) => {
+        this.setState({shipping : value})
+        console.log(this.state.shipping)
     }
 
     render() {
          
 
         const {step} = this.state;
-        const { firstName, lastName, email, age, city, country } = this.state;
-        const values = { firstName, lastName, email, age, city, country };
+        const { shipping, firstName, lastName, email, age, city, country } = this.state;
+        const values = { shipping, firstName, lastName, email, age, city, country };
         switch(step) {
         case 1:
             return <OrderUserDetails 
                     nextStep={this.nextStep} 
                     handleChange = {this.handleChange}
+                    handleCheckboxChange = {this.handleCheckboxChange}
                     values={values}
                     />
         case 2:
@@ -60,6 +68,7 @@ export class OrderPage extends Component {
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
                     handleChange = {this.handleChange}
+                    handleCheckboxChange = {this.handleCheckboxChange}
                     values={values}
                     />
         case 3:

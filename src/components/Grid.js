@@ -3,6 +3,7 @@ import { Grid, Image, Card, CardContent, Icon, Divider } from 'semantic-ui-react
 import { connect} from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import ProductImageSlider from './ProductImageSlider';
+import {bake_cookie, read_cookie} from 'sfcookies';
 
 
 
@@ -41,8 +42,8 @@ class GridExampleRelaxed extends Component {
             {items.map(item => (
               <Grid.Column key={item.productId}>
                 <Link to= {'/' + item.productId}>
-                  <Card href='#card-example-link-card' color='teal'>
-                      <Image src= 'http://placekitten.com/g/200/300' />
+                  <Card href='#card-example-link-card' color='teal' onClick={bake_cookie('items', items)}>
+                      <Image src={item.images[0].url} />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.name}</Card.Meta>

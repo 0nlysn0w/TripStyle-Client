@@ -60,24 +60,10 @@ class OrderPersonalDetails extends Component {
                                 <Form color='blue' >
                                     <Container>
                                         <Form.Field>
-                                            <label>Age</label>
-                                            <input placeholder='Age'
-                                                onChange={this.props.handleChange('age')}
-                                                defaultValue={values.age}
-                                            />
-                                        </Form.Field>
-                                        <Form.Field>
-                                            <label>City</label>
-                                            <input placeholder='City'
-                                                onChange={this.props.handleChange('city')}
-                                                defaultValue={values.city}
-                                            />
-                                        </Form.Field>
-                                        <Form.Field>
-                                            <label>Country</label>
-                                            <input placeholder='Country'
-                                                onChange={this.props.handleChange('country')}
-                                                defaultValue={values.country}
+                                            <label>Bank</label>
+                                            <input placeholder='Bank'
+                                                onChange={this.props.handleChange('bank')}
+                                                defaultValue={values.bank}
                                             />
                                         </Form.Field>
                                         <Button onClick={this.back}>Back</Button>

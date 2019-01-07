@@ -20,9 +20,12 @@ export class OrderPage extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        age: '',
+        street: '',
+        houseNumber: '', 
+        postalCode: '',
         city: '',
-        country: ''
+        country: '',
+        bank: ''
     }
 
     nextStep = () => {
@@ -53,8 +56,8 @@ export class OrderPage extends Component {
          
 
         const {step} = this.state;
-        const { shipping, firstName, lastName, email, age, city, country } = this.state;
-        const values = { shipping, firstName, lastName, email, age, city, country };
+        const { street, houseNumber, postalCode ,shipping, firstName, lastName, email, age, city, country } = this.state;
+        const values = { street, houseNumber, postalCode, shipping, firstName, lastName, email, age, city, country };
         switch(step) {
         case 1:
             return <OrderUserDetails 

@@ -90,7 +90,7 @@ class OrderUserDetails extends Component {
                             <Segment>
                                 <Form color='green' >
                                     <Container>
-                                        <Form.Field>
+                                        <Form.Field required min={0} type ='number'> 
                                             <label>First Name</label>
                                             <input
                                                 placeholder='First Name'
@@ -113,6 +113,41 @@ class OrderUserDetails extends Component {
                                                 placeholder='Email Address'
                                                 onChange={this.props.handleChange('email')}
                                                 defaultValue={values.email}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>Street</label>
+                                            <input placeholder='Street'
+                                                onChange={this.props.handleChange('street')}
+                                                defaultValue={values.street}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>House Number</label>
+                                            <input placeholder='House number'
+                                                onChange={this.props.handleChange('houseNumber')}
+                                                defaultValue={values.houseNumber}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>postalCode</label>
+                                            <input placeholder='Postal code'
+                                                onChange={this.props.handleChange('postalCode')}
+                                                defaultValue={values.postalCode}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>City</label>
+                                            <input placeholder='City'
+                                                onChange={this.props.handleChange('city')}
+                                                defaultValue={values.city}
+                                            />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>Country</label>
+                                            <input placeholder='Country'
+                                                onChange={this.props.handleChange('country')}
+                                                defaultValue={values.country}
                                             />
                                         </Form.Field>
                                         <Button onClick={this.saveAndContinue}>Save And Continue </Button>

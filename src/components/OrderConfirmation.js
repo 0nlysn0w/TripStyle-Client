@@ -90,7 +90,7 @@ class OrderConfirmation extends Component {
                                     <List.Item>
                                         <List.Icon name='calendar' />
                                         <List.Content>
-                                            <List.Header as='a'>Location</List.Header>
+                                            <List.Header as='a'>Age</List.Header>
                                             <List.Description>{age} Years</List.Description>
                                         </List.Content>
                                     </List.Item>

@@ -1,37 +1,71 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createProduct } from '../../store/actions/productActions'
+import React, { Component } from 'react';
 import TopHeader from '../Header';
-import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button, Icon } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Button, Container, Grid, Checkbox, Form, Input, Radio, Select, TextArea, Divider } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
+import Footer from '../Footer';
 
-class CreateProduct extends Component {
+export default class RegUserPage extends Component {
+    displayName = RegUserPage.name
+    constructor(props) {
+      super(props);
+      this.state = {
+        users: null,
+        isLoaded: false
+      }
+    }
 
-  render() {
-    return (
+    componentDidMount() {
+      fetch('https://localhost:5001/api/user')
+        .then(res => res.json())
+        .then(json => {
+          this.setState({
+            isLoaded: true,
+            users: json
+          })
+        });
+    }
+    
 
-      <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Create new Product</h5>
-          <div className="input-field">
-            <label htmlFor="Firstname">User Firstname:</label>
-          </div>
-          <div className="input-field">
-          <label htmlFor="Lastname">User Lastname:</label>
-          </div>
-        </form>
-        <Button basic compact secondary as={NavLink} to='/'>
-            <p>Home</p>
-        </Button>
-      </div>
-      
-    )
-  }
+    render() {
+      var { isLoaded, users} = this.state;
+      if (!isLoaded) {
+        return <div>Loading...</div>;
+      }
+      if (users && (users.length = 1)) {
+        return (
+            <div>
+                <TopHeader />
+                <Grid centered columns={2}>
+                {users.map(user => (
+                    <Grid.Column>
+                        <Container>
+                            <h1>My customer information:</h1>
+                            <Form>
+                                <Container>
+                                    <Form.Input label='First name:' placeholder={user.firstname} readOnly/>
+                                    <Form.Input label='Last name:' placeholder={user.lastname} readOnly/>
+                                    <Form.Input label='Email address' placeholder={user.email} readOnly/>
+                                    <Form.Input label='Phone number' placeholder={user.phonenumber} readOnly/>
+                                    <Form.Group unstackable widths={2}>
+                                        <Form.Input label='Postal code' placeholder={user.postalcode} readOnly/>
+                                        <Form.Input label='House number' placeholder={user.housenumber} readOnly/>
+                                    </Form.Group>
+                                    {/* <Form.Checkbox label='I agree to take part in the "human centipide project"' /> */}
+                                </Container>
+                                <Divider hidden fitted />
+                            </Form>
+                        </Container>
+                    </Grid.Column>
+                    ))}
+                </Grid>
+
+                <Divider horizontal>  My orders </Divider>
+
+              
+
+                <Footer />
+            </div>
+        );
+    }
 }
-const mapDispatchToProps = (dispatch) => {
-  return{
-    createProduct:(product) => dispatch(createProduct(product))
-  }
 }
-
-export default connect(null,mapDispatchToProps)(CreateProduct)

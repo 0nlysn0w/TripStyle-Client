@@ -22,7 +22,7 @@ class OrderUserDetails extends Component {
                             {/* <OrderSteps /> */}
                             <div>
                                 <Container textAlign='center'>
-                                    <Step.Group>
+                                    <Step.Group widths={3}>
                                         <Step active>
                                             <Icon name='truck' />
                                             <Step.Content>

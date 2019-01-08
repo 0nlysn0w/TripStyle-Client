@@ -52,6 +52,10 @@ export class OrderPage extends Component {
         console.log(this.state.shipping)
     }
 
+    handleDropdownChange = (e, {value}) => {
+        this.setState({bank : value})
+        console.log(this.state.bank)
+    }
     render() {
          
 
@@ -64,6 +68,7 @@ export class OrderPage extends Component {
                     nextStep={this.nextStep} 
                     handleChange = {this.handleChange}
                     handleCheckboxChange = {this.handleCheckboxChange}
+                    handleDropdownChange = {this.handleDropdownChange}
                     values={values}
                     />
         case 2:
@@ -72,6 +77,7 @@ export class OrderPage extends Component {
                     prevStep={this.prevStep}
                     handleChange = {this.handleChange}
                     handleCheckboxChange = {this.handleCheckboxChange}
+                    handleDropdownChange = {this.handleDropdownChange}
                     values={values}
                     />
         case 3:

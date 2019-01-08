@@ -27,7 +27,7 @@ class OrderPersonalDetails extends Component {
                             {/* <OrderSteps /> */}
                             <div>
                                 <Container textAlign='center'>
-                                    <Step.Group>
+                                    <Step.Group widths={3}>
                                         <Step disabled>
                                             <Icon name='truck' />
                                             <Step.Content>
@@ -65,10 +65,11 @@ class OrderPersonalDetails extends Component {
                                         openOnFocus={false}
                                         selection
                                         options={[
-                                            { key: 1, text: 'ABN-Amro bank', value: 1 },
-                                            { key: 2, text: 'ING', value: 2 },
-                                            { key: 3, text: 'ASN bank', value: 3 },
+                                            { key: 1, text: 'ABN-Amro bank', value: 'ABN-Amro bank' },
+                                            { key: 2, text: 'ING', value: 'ING' },
+                                            { key: 3, text: 'ASN bank', value: 'ASN bank' },
                                         ]}
+                                        onChange={this.props.handleDropdownChange}
                                     />
                                 </Form.Field>
                             </Segment>

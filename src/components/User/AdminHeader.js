@@ -37,7 +37,6 @@ export default class AdminPage extends Component {
       return <div>Loading...</div>;
     }
     if (items && (items.length)) {
-      console.log(this.state.items[0].images[0].url)
       return (
         <div>
         <TopHeader />
@@ -48,7 +47,7 @@ export default class AdminPage extends Component {
               <Grid.Column key={item.productId}>
                   <Link to= {'/admin/product/' + item.productId}>
                   <Card color='teal'>
-                      <Image src= {this.state.items[3].images[0].url} />
+                      <Image src= {item.image} />
                     <CardContent>
                     
                       <Card.Header>{item.name}</Card.Header>

@@ -85,12 +85,9 @@ import { createProduct } from '../store/actions/productActions'
           <Grid.Row columns={4} centered relaxed>
             {this.state.items.map(item => (
               <Grid.Column>
-                <NavLink to='./product'>
+                <NavLink to={'/'+item.productId}>
                   <Card href='#card-example-link-card' color='teal'>
-                    <Image src= 
-                    //'https://i.imgur.com/nEMZUNw.gif'
-                    'https://i.imgur.com/Bbn2V1A.jpg' 
-                    />
+                    <Image src= {item.image}    />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.color}

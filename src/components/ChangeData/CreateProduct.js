@@ -17,7 +17,8 @@ class CreateProduct extends Component {
     Size:'',
     Color:'',
     Region:'',
-    Season:''
+    Season:'',
+    Image:''
 
   }
   handleChange = (e) => {
@@ -43,7 +44,8 @@ class CreateProduct extends Component {
         Size: this.state.Size,
         Color: this.state.Color,
         Region: this.state.Region,
-        Season: this.state.Season
+        Season: this.state.Season,
+        Image: this.state.Image
 
   })
 })
@@ -92,6 +94,10 @@ class CreateProduct extends Component {
             <label htmlFor="Make">Product Make</label>
             <textarea  id="Make" className="materialize-textarea" onChange={this.handleChange}></textarea>
           </div> */}
+          <div className="input-field">
+            <label htmlFor="Image">Product Image</label>
+            <input type="text" id='Image' onChange={this.handleChange} />
+          </div>
           <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0">Create</button>
           </div>

@@ -22,16 +22,16 @@ class AdminProductPage extends Component {
         .then(res=> {
             console.log(res.data[0])
             this.setState({
-                product_ProductId: res.data[0].productId,
-                product_name: res.data[0].name,
-                product_price: res.data[0].price,
-                product_image: res.data[0].images[0].url,
-                product_size: res.data[0].size,
-                product_make: res.data[0].make,
-                product_color: res.data[0].color,
-                product_region: res.data[0].region,
-                product_season: res.data[0].season,
-                product_stock: res.data[0].stock,
+                product_ProductId: res.data.productId,
+                product_name: res.data.name,
+                product_price: res.data.price,
+                product_image: res.data.image,
+                product_size: res.data.size,
+                product_make: res.data.make,
+                product_color: res.data.color,
+                product_region: res.data.region,
+                product_season: res.data.season,
+                product_stock: res.data.stock,
                 product_category: 'Doesnt work'
             })
         })

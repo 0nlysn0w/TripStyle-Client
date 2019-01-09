@@ -45,7 +45,7 @@ class GridExampleRelaxed extends Component {
                   <Card href='#card-example-link-card' color='teal' 
                   // onClick={bake_cookie('items', items)}
                   >
-                      <Image src={item.images[0].url} />
+                      <Image src={item.image} />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.name}</Card.Meta>

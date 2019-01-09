@@ -44,12 +44,12 @@ export default class RegUserPage extends Component {
                                 <Container>
                                     <Form.Input label='First name:' placeholder={user.firstname} readOnly/>
                                     <Form.Input label='Last name:' placeholder={user.lastname} readOnly/>
-                                    <Form.Input label='Email address' placeholder={user.email} readOnly/>
-                                    <Form.Input label='Phone number' placeholder={user.phonenumber} readOnly/>
-                                    <Form.Group unstackable widths={2}>
-                                        <Form.Input label='Postal code' placeholder={user.postalcode} readOnly/>
-                                        <Form.Input label='House number' placeholder={user.housenumber} readOnly/>
-                                    </Form.Group>
+                                    <Form.Input label='Email address:' placeholder={user.email} readOnly/>
+                                    <Form.Input label='Phone number:' placeholder={user.phonenumber} readOnly/>
+                                    <Form.Input label='Address:' placeholder={user.street} readOnly/>
+                                    <Form.Input label='City:' placeholder={user.city} readOnly/>
+                                    <Form.Input label='Country:' placeholder={user.country} readOnly/>
+
                                     {/* <Form.Checkbox label='I agree to take part in the "human centipide project"' /> */}
                                 </Container>
                                 <Divider hidden fitted />

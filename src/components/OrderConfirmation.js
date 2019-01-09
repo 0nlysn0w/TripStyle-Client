@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
-import { Segment, Step, Icon, Button, List, Grid, Divider, Container } from 'semantic-ui-react';
+import { Segment, Step, Icon, Button, List, Grid, Divider, Container, Form } from 'semantic-ui-react';
 import TopHeader from './Header';
 import Footer from './Footer';
+import { connect } from 'react-redux'
 // import { OrderSteps } from './OrderSteps';
 
 class OrderConfirmation extends Component {
     saveAndContinue = (e) => {
         e.preventDefault();
         this.props.nextStep();
+        console.log(this.props.products)
+        fetch('https://localhost:5001/api/purchase', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                IsConfirmed: true,
+                UserId: 1,
+                PurchaseLines: [{
+                    ProductId: this.props.products[0].product_ProductId,
+                    Quantity: 1
+                }]
+
+            })
+        })
     }
 
     back = (e) => {
@@ -143,6 +161,19 @@ class OrderConfirmation extends Component {
                             <Button onClick={this.back}>Back</Button>
                             <Button onClick={this.saveAndContinue}>Confirm</Button>
                         </Container>
+                        {/* <form enctype="text/plain" method="get" action="mailto:griffioen538@gmail.com">
+                            <input type="text" name="first_name" />
+                            <textarea rows="5" cols="30" name="comments"></textarea>
+                            <input type="submit" value="Send" />
+                        </form>
+
+                        <Form enctype="text/plain" method="get" action="mailto:webdesign@aboutguide.com">
+                            Your First Name: <input type="text" name="first_name" />
+                            Your Last Name: <input type="text" name="last_name" />
+                            Comments: <textarea rows="5" cols="30" name="comments"></textarea>
+                            <Button input type="submit" value="Send" />
+                        </Form> */}
+
                     </Grid.Column>
                 </Grid>
                 <Divider hidden />
@@ -160,4 +191,9 @@ class OrderConfirmation extends Component {
     }
 }
 
-export default OrderConfirmation;
+const mapStateToProps = (state) => {
+    return {
+        products: state.ItemCart.products
+    }
+}
+export default connect(mapStateToProps)(OrderConfirmation)

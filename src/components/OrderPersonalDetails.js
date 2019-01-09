@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Segment, Step, Icon, Form, Button, Grid, Container, Divider, Dropdown } from 'semantic-ui-react';
-import { throws } from 'assert';
 import TopHeader from './Header';
 import Footer from './Footer';
 // import { OrderSteps } from './OrderSteps';

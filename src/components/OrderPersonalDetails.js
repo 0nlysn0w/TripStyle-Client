@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Step, Icon, Form, Button, Grid, Container, Divider } from 'semantic-ui-react';
-import { throws } from 'assert';
+import { Segment, Step, Icon, Form, Button, Grid, Container, Divider, Dropdown } from 'semantic-ui-react';
 import TopHeader from './Header';
 import Footer from './Footer';
 // import { OrderSteps } from './OrderSteps';
@@ -27,7 +26,7 @@ class OrderPersonalDetails extends Component {
                             {/* <OrderSteps /> */}
                             <div>
                                 <Container textAlign='center'>
-                                    <Step.Group>
+                                    <Step.Group widths={3}>
                                         <Step disabled>
                                             <Icon name='truck' />
                                             <Step.Content>
@@ -55,22 +54,26 @@ class OrderPersonalDetails extends Component {
                                 </Container>
                                 <Container />
                             </div>
-                            <h1 className="ui centered">Enter Personal Details</h1>
+                            <h1 className="ui centered">Select your bank</h1>
                             <Segment>
-                                <Form color='blue' >
-                                    <Container>
-                                        <Form.Field>
-                                            <label>Bank</label>
-                                            <input placeholder='Bank'
-                                                onChange={this.props.handleChange('bank')}
-                                                defaultValue={values.bank}
-                                            />
-                                        </Form.Field>
-                                        <Button onClick={this.back}>Back</Button>
-                                        <Button onClick={this.saveAndContinue}>Save And Continue </Button>
-                                    </Container>
-                                </Form>
+                                {/* <Form.Field control={Select} label='Gender' options={options} placeholder='Gender' /> */}
+                                <Form.Field>
+                                    <Dropdown
+                                        fluid
+                                        placeholder='Bank'
+                                        openOnFocus={false}
+                                        selection
+                                        options={[
+                                            { key: 1, text: 'ABN-Amro bank', value: 'ABN-Amro bank' },
+                                            { key: 2, text: 'ING', value: 'ING' },
+                                            { key: 3, text: 'ASN bank', value: 'ASN bank' },
+                                        ]}
+                                        onChange={this.props.handleDropdownChange}
+                                    />
+                                </Form.Field>
                             </Segment>
+                            <Button onClick={this.back}>Back</Button>
+                            <Button onClick={this.saveAndContinue}>Confirm</Button>
                         </Container>
                     </Grid.Column>
                 </Grid>

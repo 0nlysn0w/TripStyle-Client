@@ -22,7 +22,7 @@ class OrderUserDetails extends Component {
                             {/* <OrderSteps /> */}
                             <div>
                                 <Container textAlign='center'>
-                                    <Step.Group>
+                                    <Step.Group widths={3}>
                                         <Step active>
                                             <Icon name='truck' />
                                             <Step.Content>
@@ -56,18 +56,17 @@ class OrderUserDetails extends Component {
                                     <Container>
 
                                         <Form>
-                                            <Form.Field>
+                                            {/* <Form.Field>
                                                 {/* Selected value: <b>{this.state.value}</b> */}
-                                            </Form.Field>
+                                            {/* </Form.Field> */}
                                             <Form.Field>
                                                 <Checkbox
                                                     radio
                                                     label='Deliver at customer address.'
                                                     name='shippingOption'
-                                                    value='Deliver at'
-                                                    checked={values.shipping === 'Deliver at'}
+                                                    value='Will be delivered at your home'
+                                                    checked={values.shipping === 'Will be delivered at your home'}
                                                     onChange={this.props.handleCheckboxChange}
-                                                // defaultValue={values.shipping}
                                                 />
                                             </Form.Field>
                                             <Form.Field>
@@ -90,8 +89,9 @@ class OrderUserDetails extends Component {
                             <Segment>
                                 <Form color='green' >
                                     <Container>
-                                        <Form.Field required min={0} type ='number'> 
-                                            <label>First Name</label>
+                                        {/* required min={0} type ='number' */}
+                                        <Form.Field >
+                                            <label>First name</label>
                                             <input
                                                 placeholder='First Name'
                                                 onChange={this.props.handleChange('firstName')}
@@ -99,7 +99,7 @@ class OrderUserDetails extends Component {
                                             />
                                         </Form.Field>
                                         <Form.Field>
-                                            <label>Last Name</label>
+                                            <label>Last name</label>
                                             <input
                                                 placeholder='Last Name'
                                                 onChange={this.props.handleChange('lastName')}
@@ -107,7 +107,7 @@ class OrderUserDetails extends Component {
                                             />
                                         </Form.Field>
                                         <Form.Field>
-                                            <label>Email Address</label>
+                                            <label>Email address</label>
                                             <input
                                                 type='email'
                                                 placeholder='Email Address'
@@ -123,14 +123,14 @@ class OrderUserDetails extends Component {
                                             />
                                         </Form.Field>
                                         <Form.Field>
-                                            <label>House Number</label>
+                                            <label>House number</label>
                                             <input placeholder='House number'
                                                 onChange={this.props.handleChange('houseNumber')}
                                                 defaultValue={values.houseNumber}
                                             />
                                         </Form.Field>
                                         <Form.Field>
-                                            <label>postalCode</label>
+                                            <label>postal code</label>
                                             <input placeholder='Postal code'
                                                 onChange={this.props.handleChange('postalCode')}
                                                 defaultValue={values.postalCode}
@@ -150,7 +150,7 @@ class OrderUserDetails extends Component {
                                                 defaultValue={values.country}
                                             />
                                         </Form.Field>
-                                        <Button onClick={this.saveAndContinue}>Save And Continue </Button>
+                                        <Button type='submit' onClick={this.saveAndContinue}>Save And Continue </Button>
                                     </Container>
                                 </Form>
                             </Segment>

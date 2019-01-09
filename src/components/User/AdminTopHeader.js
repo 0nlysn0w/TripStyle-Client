@@ -18,7 +18,16 @@ export default class TopHeader extends Component {
                 <Button basic compact secondary as={NavLink} to='/'>
                     <h1>TripStyle</h1>
                 </Button>
+
             </MenuItem>
+            <MenuItem>
+              <Button basic compact secondary as={NavLink} to='/admin/admin'>
+                    <h1>Admin Panel</h1>
+                </Button></MenuItem>
+            <MenuItem>
+             <Button basic compact secondary as={NavLink} to='/admin/user'>
+                    <h1>User Panel</h1>
+                </Button></MenuItem>
             <MenuItem>
                 <Button basic compact secondary as={NavLink} to='/admin/create'>
                     <h1>Create Product</h1>
@@ -29,12 +38,9 @@ export default class TopHeader extends Component {
                     <h1>Delete Product</h1>
                 </Button>
             </MenuItem>
-            <MenuItem position='center'>
+            <MenuItem position='right'>
                 <SearchExampleStandard></SearchExampleStandard>
             </MenuItem>
-            <MenuItem className="Login" position='right'>
-                    <Login />
-                </MenuItem>
             <MenuItem>
             </MenuItem>
         </Menu>

@@ -11,6 +11,9 @@ import CreateProduct from './components/ChangeData/CreateProduct';
 import DeleteProduct from './components/ChangeData/DeleteProduct';
 import RegUserPage from './components/User/RegUserPage';
 import AdminHeader from './components/User/AdminHeader';
+import AdminProductPage from './components/AdminProductPage';
+import AdminUserPage from './components/User/AdminUserPage';
+import AdminUser from './components/AdminUser';
 
 export default class App extends Component {
   displayName = App.name
@@ -29,6 +32,9 @@ export default class App extends Component {
           <Route exact path={'/:productid'} component={ProductPage} />
           <Route exact path={'/user/:userid'} component={RegUserPage}/>
           <Route path={'/admin/admin'} component={AdminHeader}/>
+          <Route path={'/admin/user'} component={AdminUserPage}/>
+          <Route exact path={'/admin/product/:productid'} component={AdminProductPage}/>
+          <Route exact path={'/admin/userid/:userid'} component={AdminUser}/>
         </Switch>
        </BrowserRouter>
     );

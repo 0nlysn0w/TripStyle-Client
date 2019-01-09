@@ -9,8 +9,8 @@ import { Grid, Image, Card, CardContent, Icon, Divider } from 'semantic-ui-react
 import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
  
-export default class AdminPage extends Component {
-    displayName = AdminPage.name
+export default class AdminUserPage extends Component {
+    displayName = AdminUserPage.name
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ export default class AdminPage extends Component {
     handleclick (e) { console.log()}
 
     componentDidMount() {
-        fetch('https://localhost:5001/api/product')
+        fetch('https://localhost:5001/api/user')
           .then(res => res.json())
           .then(json => {
             this.setState({
@@ -37,32 +37,36 @@ export default class AdminPage extends Component {
       return <div>Loading...</div>;
     }
     if (items && (items.length)) {
-      console.log(this.state.items[0].images[0].url)
+      //console.log(this.state.items[0].images[0].url)
       return (
         <div>
         <TopHeader />
         <Container>
         <Grid>
-          <Grid.Row columns={5} centered relaxed>
+          <Grid.Row columns={3} centered relaxed>
             {items.map(item => (
-              <Grid.Column key={item.productId}>
-                  <Link to= {'/admin/product/' + item.productId}>
+              <Grid.Column key={item.firstname}>
+                  <Link to= {'/admin/userid/' + item.userId}>
                   <Card color='teal'>
-                      <Image src= {this.state.items[3].images[0].url} />
                     <CardContent>
                     
-                      <Card.Header>{item.name}</Card.Header>
+                      <Card.Header>{item.email}</Card.Header>
                       <Card.Meta>
                       {/* <Button circular size='small' color='green' onClick={this.handleclick}>+</Button> */}
-                      In Stock: {item.stock +" "}
+                      Name: {item.firstname +" "}
                       {/* <Button circular size='small' color='red' onClick={this.handleclick}>-</Button> */}
                       </Card.Meta>
                       <Card.Meta> </Card.Meta>
                       <Card.Meta>
 
-                      Product Price: {item.price +" "}
+                      Last name: {item.lastname +" "}
 
                       </Card.Meta>
+                      <Card.Meta>
+
+                        Gender: {item.gender +" "}
+
+                        </Card.Meta>
                       Click to Adjust
                     </CardContent>
                   </Card>

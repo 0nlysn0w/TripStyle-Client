@@ -4,11 +4,32 @@ import TopHeader from './Header';
 import Footer from './Footer';
 import { connect } from 'react-redux'
 // import { OrderSteps } from './OrderSteps';
-
 class OrderConfirmation extends Component {
     saveAndContinue = (e) => {
         e.preventDefault();
         this.props.nextStep();
+
+        // window.open('mailto:test@example.com');
+
+
+        // var mandrill = require('node-mandrill')('CdhuJGwEpKqLi1Qt7Qbukw');
+        
+        // //send an e-mail to jim rubenstein
+        // mandrill('/messages/send', {
+        //     message: {
+        //         to: [{ email: 'indogriff@hotmail.com', name: 'Sasuke Uchiha' }],
+        //         from_email: 'griffioen538@gmail.com',
+        //         subject: "Want sum fuk?",
+        //         text: "Well do u?"
+        //     }
+        // }, function (error, response) {
+        //         //uh oh, there was an error
+        //         if (error) console.log(JSON.stringify(error));
+
+        //         //everything's good, lets see what mandrill said
+        //         else console.log(response);
+        //     });
+
         console.log(this.props.products)
         fetch('https://localhost:5001/api/purchase', {
             method: 'POST',
@@ -18,9 +39,9 @@ class OrderConfirmation extends Component {
             },
             body: JSON.stringify({
                 IsConfirmed: true,
-                UserId: 1,
+                UserId: 3,
                 PurchaseLines: [{
-                    ProductId: this.props.products[0].product_ProductId,
+                    ProductId: this.props.products.product_ProductId,
                     Quantity: 1
                 }]
 
@@ -159,20 +180,8 @@ class OrderConfirmation extends Component {
                                 </List>
                             </Segment>
                             <Button onClick={this.back}>Back</Button>
-                            <Button onClick={this.saveAndContinue}>Confirm</Button>
+                            <Button id="BeeBenson" onClick={this.saveAndContinue}>Confirm</Button>
                         </Container>
-                        {/* <form enctype="text/plain" method="get" action="mailto:griffioen538@gmail.com">
-                            <input type="text" name="first_name" />
-                            <textarea rows="5" cols="30" name="comments"></textarea>
-                            <input type="submit" value="Send" />
-                        </form>
-
-                        <Form enctype="text/plain" method="get" action="mailto:webdesign@aboutguide.com">
-                            Your First Name: <input type="text" name="first_name" />
-                            Your Last Name: <input type="text" name="last_name" />
-                            Comments: <textarea rows="5" cols="30" name="comments"></textarea>
-                            <Button input type="submit" value="Send" />
-                        </Form> */}
 
                     </Grid.Column>
                 </Grid>

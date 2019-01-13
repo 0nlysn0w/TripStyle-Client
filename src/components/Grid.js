@@ -36,7 +36,7 @@ export default class GridExampleRelaxed extends Component {
               <Grid.Column>
                 <NavLink to='./product'>
                   <Card href='#card-example-link-card' color='teal'>
-                      <Image src= {item.images[0].url} />
+                      <Image src= {item.image} />
                     <CardContent>
                       <Card.Header><Icon name='euro sign' />{item.price}</Card.Header>
                       <Card.Meta>{item.name}</Card.Meta>
